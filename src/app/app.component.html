@@ -1,0 +1,37 @@
+<md-toolbar color="default">
+    <button md-icon-button (click)="sidenav.toggle()">
+        <md-icon>menu</md-icon>
+    </button> My Notes
+</md-toolbar>
+<md-sidenav-layout class="left-navigation">
+    <md-sidenav #sidenav mode="side" opened="true">
+        <md-list>
+            <h3 md-subheader>Labels</h3>
+            <md-list-item>
+                <h3 md-line>
+                <a (click)="openFormLabel(label)" style="cursor: hand">
+                  <md-icon fontSet="fa" fontIcon="fa-plus"></md-icon> Create new label
+                </a>
+              </h3>
+            </md-list-item>
+            <div *ngIf="formLabel" style="padding: 0 16px">
+                <md-input [(ngModel)]="label.Name" id="name" placeholder="Name" style="width: 100%">
+                    <span md-suffix>
+                            <md-icon class="labelForm-actions" style="cursor: hand" (click)="save()">check</md-icon>
+                            <md-icon class="labelForm-actions" style="cursor: hand"
+                            (click)="closeFormLabel()">close</md-icon>
+                    </span>
+                </md-input>
+            </div>
+            <md-list-item *ngFor="let label of labels">
+                <h3 md-line>
+                    <md-icon class="fa fa-tag" fontSet="fa" fontIcon="fa-tag" (click)="openFormLabel(label)"></md-icon>
+                    <a routerLink="/label/{{label.Id}}">{{label.Name}}</a>
+                </h3>
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
+    <div class="content">
+    </div>
+    <router-outlet></router-outlet>
+</md-sidenav-layout>
