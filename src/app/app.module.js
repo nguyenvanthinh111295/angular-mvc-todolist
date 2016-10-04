@@ -37,6 +37,10 @@ var card_1 = require('@angular2-material/card');
 var input_1 = require('@angular2-material/input');
 var tooltip_1 = require('@angular2-material/tooltip');
 var progress_circle_1 = require('@angular2-material/progress-circle');
+// import another libraries
+var _1 = require('angular2-bootstrap-confirm/position/');
+var angular2_bootstrap_confirm_1 = require('angular2-bootstrap-confirm');
+var options = new angular2_bootstrap_confirm_1.ConfirmOptions();
 var AppModule = (function () {
     function AppModule() {
     }
@@ -58,7 +62,8 @@ var AppModule = (function () {
                 input_1.MdInputModule.forRoot(),
                 tooltip_1.MdTooltipModule.forRoot(),
                 toolbar_1.MdToolbarModule.forRoot(),
-                progress_circle_1.MdProgressCircleModule.forRoot()
+                progress_circle_1.MdProgressCircleModule.forRoot(),
+                angular2_bootstrap_confirm_1.ConfirmModule
             ],
             declarations: [
                 app_component_1.AppComponent,
@@ -69,6 +74,8 @@ var AppModule = (function () {
             ],
             providers: [
                 icon_2.MdIconRegistry,
+                angular2_bootstrap_confirm_1.ConfirmOptions,
+                { provide: angular2_bootstrap_confirm_1.Position, useClass: _1.Positioning },
                 validation_service_1.ValidationService,
                 item_service_1.ItemService,
                 label_service_1.LabelService

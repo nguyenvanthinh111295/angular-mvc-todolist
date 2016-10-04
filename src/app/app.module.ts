@@ -35,6 +35,12 @@ import { MdTooltipModule } from         '@angular2-material/tooltip'
 import { MdProgressBarModule } from     '@angular2-material/progress-bar'
 import { MdProgressCircleModule } from  '@angular2-material/progress-circle'
 
+// import another libraries
+import { Positioning } from 'angular2-bootstrap-confirm/position/';
+import {ConfirmModule, ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
+const options: ConfirmOptions = new ConfirmOptions();
+
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -52,7 +58,8 @@ import { MdProgressCircleModule } from  '@angular2-material/progress-circle'
         MdInputModule.forRoot(),
         MdTooltipModule.forRoot(),
         MdToolbarModule.forRoot(),
-        MdProgressCircleModule.forRoot()
+        MdProgressCircleModule.forRoot(),
+        ConfirmModule
     ],
     declarations: [
         AppComponent,
@@ -63,6 +70,8 @@ import { MdProgressCircleModule } from  '@angular2-material/progress-circle'
     ],
     providers: [
         MdIconRegistry,
+        ConfirmOptions, // for comfrirm dialog
+        {provide: Position, useClass: Positioning}, // for comfrirm dialog
         ValidationService,
         ItemService,
         LabelService

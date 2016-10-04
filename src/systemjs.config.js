@@ -34,7 +34,9 @@
       '@angular2-material/input':               'node_modules/@angular2-material/input',
       '@angular2-material/tooltip':             'node_modules/@angular2-material/tooltip',
       '@angular2-material/progress-bar':        'node_modules/@angular2-material/progress-bar',
-      '@angular2-material/progress-circle':        'node_modules/@angular2-material/progress-circle',
+      '@angular2-material/progress-circle':     'node_modules/@angular2-material/progress-circle',
+      'angular2-bootstrap-confirm':             'node_modules/angular2-bootstrap-confirm',
+      'angular2-bootstrap-confirm/position':    'node_modules/angular2-bootstrap-confirm/position',
 
       // other libraries
       'rxjs':                       'npm:rxjs',
@@ -104,6 +106,15 @@
       '@angular2-material/progress-circle':{
         format: 'cjs',
         main: 'progress-circle.umd.js'
+      },
+
+      'angular2-bootstrap-confirm':{
+        defaultExtension: 'js',
+        main: './dist/umd/angular2-bootstrap-confirm.js'
+      },
+      'angular2-bootstrap-confirm/position':{
+        defaultExtension: 'js',
+        main: './index.js'
       },
 
     }
