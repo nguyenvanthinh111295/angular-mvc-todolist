@@ -1,11 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmOptions, Position } from 'angular2-bootstrap-confirm';
+import { Positioning } from 'angular2-bootstrap-confirm/position/';
 
 import { Label } from './shared/label/';
 import { LabelService } from './shared/label.service';
 
 import { AppComponent  } from './../app.component';
+
+const options: ConfirmOptions = new ConfirmOptions();
+options.focusButton = 'confirm';
 
 @Component({
     selector: 'labels',
@@ -20,6 +25,12 @@ export class LabelComponent implements OnInit {
     selectedLabel: Label;
     toolbarTitle: string = "New label"; 
 
+    // for confirm dialog
+    title: string = "Delete";
+    message: string = 'Are you sure delete this Label ?';
+    cancelClicked: boolean = false;
+    isOpen: boolean = false;
+
     constructor(
         private labelService: LabelService,
         private formBuilder: FormBuilder,
@@ -31,7 +42,7 @@ export class LabelComponent implements OnInit {
         //     name: ['', [Validators.required, Validators.maxLength(250)]]
         // });
     }
-
+    
     private InitialLabel(){
         this.label = new Label();
     }

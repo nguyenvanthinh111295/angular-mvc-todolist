@@ -11,9 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
+var angular2_bootstrap_confirm_1 = require('angular2-bootstrap-confirm');
 var _1 = require('./shared/label/');
 var label_service_1 = require('./shared/label.service');
 var app_component_1 = require('./../app.component');
+var options = new angular2_bootstrap_confirm_1.ConfirmOptions();
+options.focusButton = 'confirm';
 var LabelComponent = (function () {
     function LabelComponent(labelService, formBuilder, appComponent, activedRoute, router) {
         this.labelService = labelService;
@@ -22,6 +25,11 @@ var LabelComponent = (function () {
         this.activedRoute = activedRoute;
         this.router = router;
         this.toolbarTitle = "New label";
+        // for confirm dialog
+        this.title = "Delete";
+        this.message = 'Are you sure delete this Label ?';
+        this.cancelClicked = false;
+        this.isOpen = false;
         // this.labelForm = formBuilder.group({
         //     name: ['', [Validators.required, Validators.maxLength(250)]]
         // });
