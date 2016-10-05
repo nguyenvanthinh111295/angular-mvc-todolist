@@ -164,6 +164,24 @@ md-toolbar md-icon:hover{
     color: black;
 }
 
+md-card .demo-full-width {
+    width: 100%;
+}
+
+md-card textarea {
+    overflow: hidden;
+    height: 48px;
+    z-index: auto;
+    position: relative;
+    line-height: 24.2857px;
+    font-size: 17px;
+    transition: none;
+    background: transparent !important;
+    border: none;
+    resize: none;
+    outline: none;
+}
+
 /*validation styles*/
 control-messages div {
     color: #E82C0C;
