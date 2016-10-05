@@ -8,7 +8,6 @@ namespace ToDoList.Data.Repositories
 {
     public interface IItemRepository
     {
-        IEnumerable<Item> GetAllItems();
-        void InsertItem(Item item); 
-    }                                       
+        IEnumerable<Item> GetAll(); 
+    }
 }
