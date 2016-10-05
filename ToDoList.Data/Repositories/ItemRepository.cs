@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ToDoList.Data.Repositories
 {
@@ -15,10 +13,16 @@ namespace ToDoList.Data.Repositories
             this._db = new ToDoListContext();
         }
 
-        public IEnumerable<Item> GetAll()
+        public IEnumerable<Item> GetAllItems()
         {
             var items = _db.Items.ToList();
             return items;
+        }
+
+        public void InsertItem(Item item)
+        {
+            _db.Items.Add(item);
+            _db.SaveChanges();
         }
     }
 }
