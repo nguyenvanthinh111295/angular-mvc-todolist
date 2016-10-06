@@ -1,30 +1,42 @@
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
-import {Http, Headers} from "@angular/http";
-import {Injectable} from "@angular/core";
+import {Http, Headers} from '@angular/http';
+import {Injectable} from '@angular/core';
+
+import {Item} from './item';
 
 @Injectable()
 export class ItemService {
 
-    private http: Http;
-    constructor(http: Http) {
-        this.http = http;    
+    private itemsUrl = 'http://localhost:64017/api/items';
+    private headers = new Headers({ 'Content-Type': 'application/json' });
+
+    constructor(private http: Http) { }
+
+    getItems(): any {
+        return this.http
+            .get(this.itemsUrl, this.headers)
+            .toPromise()
+            .then(res => res.json())
+            .catch(this.handleError);
     }
 
-    public getItems():any{
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        headers.append("Accept", "application/json");
-
-        let url = "http://localhost:64017/api/items";
-        return this.http.get(url, {headers: headers})
-        .toPromise()
-        .then((response: any) => this.handleResponse(response));
+    private post(item: Item): Promise<Item> {
+        return this.http
+            .post(this.itemsUrl,
+            JSON.stringify(item),
+            { headers: this.headers })
+            .toPromise()
+            .then(() => item)
+            .catch(this.handleError);
     }
 
-    private handleResponse(response: any){
-        console.log(response);
-        return response.json();
+    save(item: Item): Promise<Item>{
+        return this.post(item);
     }
 
+    private handleError(error: any) {
+        console.error('An error occured', error);
+        return Promise.reject(error.message || error);
+    }
 }

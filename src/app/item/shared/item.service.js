@@ -9,25 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 require('rxjs/Rx');
-var http_1 = require("@angular/http");
-var core_1 = require("@angular/core");
+var http_1 = require('@angular/http');
+var core_1 = require('@angular/core');
 var ItemService = (function () {
     function ItemService(http) {
         this.http = http;
+        this.itemsUrl = 'http://localhost:64017/api/items';
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     ItemService.prototype.getItems = function () {
-        var _this = this;
-        var headers = new http_1.Headers();
-        headers.append("Content-Type", "application/json");
-        headers.append("Accept", "application/json");
-        var url = "http://localhost:64017/api/items";
-        return this.http.get(url, { headers: headers })
+        return this.http
+            .get(this.itemsUrl, this.headers)
             .toPromise()
-            .then(function (response) { return _this.handleResponse(response); });
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
     };
-    ItemService.prototype.handleResponse = function (response) {
-        console.log(response);
-        return response.json();
+    ItemService.prototype.post = function (item) {
+        return this.http
+            .post(this.itemsUrl, JSON.stringify(item), { headers: this.headers })
+            .toPromise()
+            .then(function () { return item; })
+            .catch(this.handleError);
+    };
+    ItemService.prototype.save = function (item) {
+        return this.post(item);
+    };
+    ItemService.prototype.handleError = function (error) {
+        console.error('An error occured', error);
+        return Promise.reject(error.message || error);
     };
     ItemService = __decorate([
         core_1.Injectable(), 
