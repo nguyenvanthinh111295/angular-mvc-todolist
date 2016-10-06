@@ -17,8 +17,7 @@ var ItemsComponent = (function () {
             self.items = responseItem;
         });
     }
-    ItemsComponent.prototype.ngOnInit = function () {
-    };
+    ItemsComponent.prototype.ngOnInit = function () { };
     ItemsComponent = __decorate([
         core_1.Component({
             selector: 'items',
