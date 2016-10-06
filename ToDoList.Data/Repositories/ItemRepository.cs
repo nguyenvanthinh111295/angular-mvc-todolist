@@ -20,5 +20,11 @@ namespace ToDoList.Data.Repositories
             var items = _db.Items.ToList();
             return items;
         }
+
+        public void InsertItem(Item item)
+        {
+            _db.Items.Add(item);
+            _db.SaveChanges();
+        }
     }
 }

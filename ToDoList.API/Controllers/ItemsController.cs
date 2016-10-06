@@ -28,5 +28,15 @@ namespace ToDoList.API.Controllers
         {
             return _itemRepository.GetAll();
         }
+
+        [ResponseType(typeof(Item))]
+        public IHttpActionResult PostItem(Item item)
+        {
+            if (ModelState.IsValid)
+            {
+                _itemRepository.InsertItem(item);
+            }
+            return CreatedAtRoute("DefaultApi", new { item.Id }, item);
+        }
     }
 }
