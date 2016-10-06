@@ -11,8 +11,7 @@ namespace ToDoList.Data
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Label
     {
         public int Id { get; set; }
