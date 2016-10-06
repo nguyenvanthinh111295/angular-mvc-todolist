@@ -14,12 +14,15 @@ var router_1 = require('@angular/router');
 var angular2_bootstrap_confirm_1 = require('angular2-bootstrap-confirm');
 var _1 = require('./shared/label/');
 var label_service_1 = require('./shared/label.service');
+var item_1 = require('./../item/shared/item');
+var item_service_1 = require('./../item/shared/item.service');
 var app_component_1 = require('./../app.component');
 var options = new angular2_bootstrap_confirm_1.ConfirmOptions();
 options.focusButton = 'confirm';
 var LabelComponent = (function () {
-    function LabelComponent(labelService, formBuilder, appComponent, activedRoute, router) {
+    function LabelComponent(labelService, itemService, formBuilder, appComponent, activedRoute, router) {
         this.labelService = labelService;
+        this.itemService = itemService;
         this.formBuilder = formBuilder;
         this.appComponent = appComponent;
         this.activedRoute = activedRoute;
@@ -30,12 +33,16 @@ var LabelComponent = (function () {
         this.message = 'Are you sure delete this Label ?';
         this.cancelClicked = false;
         this.isOpen = false;
-        // this.labelForm = formBuilder.group({
-        //     name: ['', [Validators.required, Validators.maxLength(250)]]
-        // });
+        this.labelForm = formBuilder.group({
+            itemName: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(250)]],
+            itemContent: ''
+        });
     }
     LabelComponent.prototype.InitialLabel = function () {
         this.label = new _1.Label();
+    };
+    LabelComponent.prototype.InitialItem = function () {
+        this.item = new item_1.Item();
     };
     LabelComponent.prototype.labelDetail = function () {
         var _this = this;
@@ -59,45 +66,36 @@ var LabelComponent = (function () {
             _this.router.navigateByUrl('/');
         });
     };
-    // private labelDetail()
-    // {
-    //     this.activedRoute.params.subscribe(params => {
-    //         if(params['Id'] !== undefined) {
-    //             this.toolbarTitle = "Edit label";
-    //             let labelId = +params['Id'];
-    //             this.labelService
-    //                 .getDetail(labelId)
-    //                 .then(label => {
-    //                     this.label = label.json();
-    //                 })
-    //         }
-    //     })
-    // }
-    // save(){
-    //     if(this.labelForm.dirty && this.labelForm.valid) {
-    //         this.labelService
-    //         .save(this.label)
-    //         .then(label => {
-    //             this.appComponent.getAllLabel();
-    //             this.labelForm.reset();
-    //             this.router.navigateByUrl('/');
-    //         });
-    //     }
-    // }
+    LabelComponent.prototype.save = function () {
+        var _this = this;
+        if (this.labelForm.dirty && this.labelForm.valid) {
+            this.item.LabelId = this.label.Id;
+            this.itemService.save(this.item)
+                .then(function (item) {
+                _this.labelForm.reset();
+                // re-load item list
+            });
+        }
+    };
     LabelComponent.prototype.ngOnInit = function () {
         this.InitialLabel();
+        this.InitialItem();
         this.labelDetail();
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', _1.Label)
     ], LabelComponent.prototype, "label", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', item_1.Item)
+    ], LabelComponent.prototype, "item", void 0);
     LabelComponent = __decorate([
         core_1.Component({
             selector: 'labels',
             templateUrl: 'app/label/label.component.html',
         }), 
-        __metadata('design:paramtypes', [label_service_1.LabelService, forms_1.FormBuilder, app_component_1.AppComponent, router_1.ActivatedRoute, router_1.Router])
+        __metadata('design:paramtypes', [label_service_1.LabelService, item_service_1.ItemService, forms_1.FormBuilder, app_component_1.AppComponent, router_1.ActivatedRoute, router_1.Router])
     ], LabelComponent);
     return LabelComponent;
 }());
