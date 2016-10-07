@@ -15,19 +15,56 @@
     </md-toolbar>
     <md-card>
         <md-card-content>
-            
             <md-input [(ngModel)]="item.Name" formControlName="itemName" class="demo-full-width" placeholder="Title" align="start"></md-input>
             <control-messages [control]="labelForm.controls.itemName"></control-messages>
-            
+
             <textarea [(ngModel)]="item.Content" formControlName="itemContent" class="demo-full-width" placeholder="Write a note"></textarea>
-        
         </md-card-content>
         <md-card-actions layout="row" style="text-align:right">
-            <button md-button (click)="save(item)"
-            [disabled]="!labelForm.valid"  
-            style="font-weight:bold; color:#757575">
+            <button md-button (click)="save(item)" [disabled]="!labelForm.valid" style="font-weight:bold; color:#757575">
                 Finish
             </button>
         </md-card-actions>
     </md-card>
 </form>
+<div class="item-list">
+    <div>
+        <md-card *ngFor="let item of items">
+            {{item.Name}}
+        </md-card>
+    </div>
+</div>
+<!--<div class="item-list">
+    <div class="item-card">
+        <md-card>
+            <md-card-title-group>
+                <md-card-title>Card with title</md-card-title>
+                <md-card-subtitle>Subtitle</md-card-subtitle>
+            </md-card-title-group>
+        </md-card>
+    </div>
+    <div class="item-card">
+        <md-card>
+            <md-card-title-group>
+                <md-card-title>Card with title</md-card-title>
+                <md-card-subtitle>Subtitle</md-card-subtitle>
+            </md-card-title-group>
+        </md-card>
+    </div>
+    <div class="item-card">
+        <md-card>
+            <md-card-title-group>
+                <md-card-title>Card with title</md-card-title>
+                <md-card-subtitle>Subtitle</md-card-subtitle>
+            </md-card-title-group>
+        </md-card>
+    </div>
+    <div class="item-card">
+        <md-card>
+            <md-card-title-group>
+                <md-card-title>Card with title</md-card-title>
+                <md-card-subtitle>Subtitle</md-card-subtitle>
+            </md-card-title-group>
+        </md-card>
+    </div>
+</div>-->

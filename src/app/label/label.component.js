@@ -77,10 +77,17 @@ var LabelComponent = (function () {
             });
         }
     };
+    LabelComponent.prototype.getAllItems = function () {
+        var _this = this;
+        this.itemService
+            .getItems()
+            .then(function (items) { return _this.items = items; });
+    };
     LabelComponent.prototype.ngOnInit = function () {
         this.InitialLabel();
         this.InitialItem();
         this.labelDetail();
+        this.getAllItems();
     };
     __decorate([
         core_1.Input(), 

@@ -34,7 +34,7 @@ export class LabelComponent implements OnInit {
     isOpen: boolean = false;
 
     labelForm: FormGroup;
-    
+
     constructor(
         private labelService: LabelService,
         private itemService: ItemService,
@@ -89,9 +89,17 @@ export class LabelComponent implements OnInit {
         }
     }
 
+    items: any[];
+    getAllItems(){
+        this.itemService
+            .getItems()
+            .then(items => this.items = items);
+    }
+
     ngOnInit() {
         this.InitialLabel();
         this.InitialItem();
         this.labelDetail();
+        this.getAllItems();
     }
 }
