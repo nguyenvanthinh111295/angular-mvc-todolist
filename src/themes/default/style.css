@@ -182,8 +182,15 @@ md-card textarea {
     outline: none;
 }
 
+.item-list md-card{
+    width: auto;
+    margin: 5px;
+    display: inline-flex;
+};
+
 /*validation styles*/
 control-messages div {
     color: #E82C0C;
     font-size: 13px;
 }
+
