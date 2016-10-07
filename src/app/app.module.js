@@ -37,6 +37,7 @@ var card_1 = require('@angular2-material/card');
 var input_1 = require('@angular2-material/input');
 var tooltip_1 = require('@angular2-material/tooltip');
 var progress_circle_1 = require('@angular2-material/progress-circle');
+var grid_list_1 = require('@angular2-material/grid-list');
 // import another libraries
 var _1 = require('angular2-bootstrap-confirm/position/');
 var angular2_bootstrap_confirm_1 = require('angular2-bootstrap-confirm');
@@ -63,6 +64,7 @@ var AppModule = (function () {
                 tooltip_1.MdTooltipModule.forRoot(),
                 toolbar_1.MdToolbarModule.forRoot(),
                 progress_circle_1.MdProgressCircleModule.forRoot(),
+                grid_list_1.MdGridListModule.forRoot(),
                 angular2_bootstrap_confirm_1.ConfirmModule
             ],
             declarations: [

@@ -32,6 +32,7 @@
     "@angular2-material/sidenav": "^2.0.0-alpha.8-2",
     "@angular2-material/toolbar": "^2.0.0-alpha.8-2",
     "@angular2-material/tooltip": "^2.0.0-alpha.8-2",
+    "@angular2-material/grid-list": "^2.0.0-alpha.8-2",
     "angular2-bootstrap-confirm": "^1.0.2",
     "angular2-in-memory-web-api": "0.0.20",
     "bootstrap": "^3.3.6",

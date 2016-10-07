@@ -34,6 +34,7 @@ import { MdInputModule } from           '@angular2-material/input'
 import { MdTooltipModule } from         '@angular2-material/tooltip'
 import { MdProgressBarModule } from     '@angular2-material/progress-bar'
 import { MdProgressCircleModule } from  '@angular2-material/progress-circle'
+import { MdGridListModule } from        '@angular2-material/grid-list'
 
 // import another libraries
 import { Positioning } from 'angular2-bootstrap-confirm/position/';
@@ -59,6 +60,7 @@ const options: ConfirmOptions = new ConfirmOptions();
         MdTooltipModule.forRoot(),
         MdToolbarModule.forRoot(),
         MdProgressCircleModule.forRoot(),
+        MdGridListModule.forRoot(),
         ConfirmModule
     ],
     declarations: [
