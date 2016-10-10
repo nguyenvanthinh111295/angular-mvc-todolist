@@ -59,6 +59,7 @@ const options: ConfirmOptions = new ConfirmOptions();
         MdInputModule.forRoot(),
         MdTooltipModule.forRoot(),
         MdToolbarModule.forRoot(),
+        MdProgressBarModule.forRoot(),
         MdProgressCircleModule.forRoot(),
         MdGridListModule.forRoot(),
         ConfirmModule
