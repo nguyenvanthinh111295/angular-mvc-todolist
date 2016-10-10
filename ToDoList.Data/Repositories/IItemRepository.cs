@@ -9,6 +9,7 @@ namespace ToDoList.Data.Repositories
     public interface IItemRepository
     {
         IEnumerable<Item> GetAll();
+        IEnumerable<Item> GetLabelItemsByLabelId(int labelId);
         void InsertItem(Item item); 
     }
 }

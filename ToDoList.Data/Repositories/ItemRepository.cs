@@ -21,6 +21,12 @@ namespace ToDoList.Data.Repositories
             return items;
         }
 
+        public IEnumerable<Item> GetLabelItemsByLabelId(int labelId)
+        {
+            var items = _db.Items.Where(i => i.LabelId == labelId);
+            return items;
+        }
+
         public void InsertItem(Item item)
         {
             _db.Items.Add(item);
