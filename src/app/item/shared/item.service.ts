@@ -8,7 +8,7 @@ import {Item} from './item';
 @Injectable()
 export class ItemService {
 
-    private itemsUrl = 'http://localhost:64017/api/items';
+    private itemsUrl = 'http://localhost:64017/api/items'; // change this local host by your local host
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private http: Http) { }
@@ -33,6 +33,13 @@ export class ItemService {
 
     save(item: Item): Promise<Item>{
         return this.post(item);
+    }
+
+    getLabelItemsByLabelId(item: Item): any{
+        return this.http
+            .get(`${this.itemsUrl + '/' + 'GetLabelItems'}/${item.LabelId}`, this.headers)
+            .toPromise()
+            .catch(this.handleError);
     }
 
     private handleError(error: any) {

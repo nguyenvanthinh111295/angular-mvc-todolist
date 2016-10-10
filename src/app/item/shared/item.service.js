@@ -14,7 +14,7 @@ var core_1 = require('@angular/core');
 var ItemService = (function () {
     function ItemService(http) {
         this.http = http;
-        this.itemsUrl = 'http://localhost:64017/api/items';
+        this.itemsUrl = 'http://localhost:64017/api/items'; // change this local host by your local host
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     ItemService.prototype.getItems = function () {
@@ -33,6 +33,12 @@ var ItemService = (function () {
     };
     ItemService.prototype.save = function (item) {
         return this.post(item);
+    };
+    ItemService.prototype.getLabelItemsByLabelId = function (item) {
+        return this.http
+            .get((this.itemsUrl + '/' + 'GetLabelItems') + "/" + item.LabelId, this.headers)
+            .toPromise()
+            .catch(this.handleError);
     };
     ItemService.prototype.handleError = function (error) {
         console.error('An error occured', error);
