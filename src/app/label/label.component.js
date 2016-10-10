@@ -66,6 +66,16 @@ var LabelComponent = (function () {
             _this.router.navigateByUrl('/');
         });
     };
+    LabelComponent.prototype.getLabelItems = function (item) {
+        var _this = this;
+        this.activedRoute.params.subscribe(function (params) {
+            if (params['Id'] !== undefined) {
+                _this.item.LabelId = +params['Id'];
+                _this.itemService.getLabelItemsByLabelId(item)
+                    .then(function (items) { return _this.items = items.json(); });
+            }
+        });
+    };
     LabelComponent.prototype.save = function () {
         var _this = this;
         if (this.labelForm.dirty && this.labelForm.valid) {
@@ -73,21 +83,15 @@ var LabelComponent = (function () {
             this.itemService.save(this.item)
                 .then(function (item) {
                 _this.labelForm.reset();
-                // re-load item list
+                _this.getLabelItems(_this.item);
             });
         }
-    };
-    LabelComponent.prototype.getAllItems = function () {
-        var _this = this;
-        this.itemService
-            .getItems()
-            .then(function (items) { return _this.items = items; });
     };
     LabelComponent.prototype.ngOnInit = function () {
         this.InitialLabel();
         this.InitialItem();
         this.labelDetail();
-        this.getAllItems();
+        this.getLabelItems(this.item);
     };
     __decorate([
         core_1.Input(), 

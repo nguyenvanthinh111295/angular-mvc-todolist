@@ -78,28 +78,32 @@ export class LabelComponent implements OnInit {
             });
     }
 
+    items: any[];
+    getLabelItems(item: Item){
+        this.activedRoute.params.subscribe(params => {
+            if (params['Id'] !== undefined) {
+                this.item.LabelId = +params['Id'];
+                this.itemService.getLabelItemsByLabelId(item)
+                .then(items => this.items = items.json());
+            }
+        });
+    }
+
     save() {
         if (this.labelForm.dirty && this.labelForm.valid) {
             this.item.LabelId = this.label.Id;
             this.itemService.save(this.item)
                 .then(item => {
                     this.labelForm.reset();
-                    // re-load item list
+                    this.getLabelItems(this.item);
                 });
         }
-    }
-
-    items: any[];
-    getAllItems(){
-        this.itemService
-            .getItems()
-            .then(items => this.items = items);
     }
 
     ngOnInit() {
         this.InitialLabel();
         this.InitialItem();
         this.labelDetail();
-        this.getAllItems();
+        this.getLabelItems(this.item);
     }
 }
