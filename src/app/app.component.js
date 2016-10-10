@@ -13,8 +13,17 @@ var label_1 = require('./label/shared/label');
 var label_service_1 = require('./label/shared/label.service');
 var AppComponent = (function () {
     function AppComponent(labelService) {
+        var _this = this;
         this.labelService = labelService;
+        this.isLoading = true;
+        this.determinateValue = 0;
         this.formLabel = false;
+        setInterval(function () {
+            _this.determinateValue += 3;
+            if (_this.determinateValue > 100) {
+                _this.determinateValue = 30;
+            }
+        }, 100, 0, true);
     }
     AppComponent.prototype.InitialLabel = function () {
         this.label = new label_1.Label();
@@ -23,7 +32,7 @@ var AppComponent = (function () {
         var _this = this;
         this.labelService
             .getLabels()
-            .then(function (labels) { return _this.labels = labels; });
+            .then(function (labels) { _this.labels = labels; });
     };
     AppComponent.prototype.openFormLabel = function (label) {
         this.formLabel = true;

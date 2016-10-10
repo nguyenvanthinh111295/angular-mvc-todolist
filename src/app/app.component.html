@@ -1,3 +1,6 @@
+<div [hidden]="isLoading">
+    <md-progress-bar mode="determinate" [value]="determinateValue"></md-progress-bar>    
+</div>
 <md-toolbar color="default">
     <button md-icon-button (click)="sidenav.toggle()">
         <md-icon>menu</md-icon>
