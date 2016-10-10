@@ -38,5 +38,16 @@ namespace ToDoList.API.Controllers
             }
             return CreatedAtRoute("DefaultApi", new { item.Id }, item);
         }
+
+        [Route("api/Items/GetLabelItems/{labelId:int}")]
+        public IEnumerable<Item> GetLabelItems(int labelId)
+        {
+            var items = _itemRepository.GetLabelItemsByLabelId(labelId);
+            if (items == null)
+            {
+                return Get();
+            }
+            return items;
+        }
     }
 }
