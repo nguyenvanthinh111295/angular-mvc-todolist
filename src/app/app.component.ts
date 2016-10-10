@@ -12,10 +12,16 @@ export class AppComponent implements OnInit {
 
     labels: Label[];
     @Input() label: Label;
-
-    constructor(
-        private labelService: LabelService) 
+    isLoading = true;
+    public determinateValue: number = 0;
+    constructor(private labelService: LabelService) 
     { 
+        setInterval(() => {
+          this.determinateValue += 3;
+          if (this.determinateValue > 100) {
+            this.determinateValue = 30;
+          }
+        }, 100, 0, true);
     }
     
     private InitialLabel()
@@ -26,11 +32,10 @@ export class AppComponent implements OnInit {
     getAllLabel(){
         this.labelService
             .getLabels()
-            .then(labels => this.labels = labels);
+            .then(labels => {this.labels = labels});
     }
 
     formLabel = false;
-
     openFormLabel(label: Label){
         this.formLabel = true;
         if(label !== null) {
