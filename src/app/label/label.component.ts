@@ -100,6 +100,10 @@ export class LabelComponent implements OnInit {
         }
     }
 
+    getItemDetail(item: Item){
+        alert(item.Id);
+    }
+
     ngOnInit() {
         this.InitialLabel();
         this.InitialItem();

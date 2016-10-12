@@ -87,6 +87,9 @@ var LabelComponent = (function () {
             });
         }
     };
+    LabelComponent.prototype.getItemDetail = function (item) {
+        alert(item.Id);
+    };
     LabelComponent.prototype.ngOnInit = function () {
         this.InitialLabel();
         this.InitialItem();
