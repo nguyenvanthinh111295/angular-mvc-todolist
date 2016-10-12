@@ -191,7 +191,6 @@ md-card textarea {
     outline: none;
 }
 
-
 /*validation styles*/
 
 md-card md-card-content control-messages div {
@@ -209,18 +208,11 @@ md-card md-card-content control-messages div {
     width: 240px;
     display: inline-table;
 }
-/*.item-list md-card md-card-title {
-    width: 200px;
-}
 
-.item-list md-card md-card-content {
-    width: 200px;
-}*/
-
-/*.item-list md-card md-card-actions {
+.item-list md-card md-card-actions {
     display: none;
 }
 
-.item-list md-card md-card-actions:hover {
-    display: inline;
-}*/
+.item-list md-card:hover md-card-actions {
+    display: block;
+}
