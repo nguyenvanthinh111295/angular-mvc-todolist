@@ -14,9 +14,15 @@ var core_1 = require('@angular/core');
 var ItemService = (function () {
     function ItemService(http) {
         this.http = http;
-        this.itemsUrl = 'http://localhost:64017/api/items'; // change this local host by your local host
+        this.itemsUrl = 'http://localhost:64017/api/items/'; // change this local host by your local host
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
+    ItemService.prototype.delete = function (item) {
+        return this.http
+            .delete((this.itemsUrl + 'DeleteItem') + "/" + item.Id, this.headers)
+            .toPromise()
+            .catch(this.handleError);
+    };
     ItemService.prototype.getItems = function () {
         return this.http
             .get(this.itemsUrl, this.headers)
@@ -36,7 +42,7 @@ var ItemService = (function () {
     };
     ItemService.prototype.getLabelItemsByLabelId = function (item) {
         return this.http
-            .get((this.itemsUrl + '/' + 'GetLabelItems') + "/" + item.LabelId, this.headers)
+            .get((this.itemsUrl + 'GetLabelItems') + "/" + item.LabelId, this.headers)
             .toPromise()
             .catch(this.handleError);
     };
