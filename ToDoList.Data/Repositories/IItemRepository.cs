@@ -10,6 +10,8 @@ namespace ToDoList.Data.Repositories
     {
         IEnumerable<Item> GetAll();
         IEnumerable<Item> GetLabelItemsByLabelId(int labelId);
-        void InsertItem(Item item); 
+        Item GetItemById(int id);
+        void InsertItem(Item item);
+        void DeleteItem(Item item); 
     }
 }

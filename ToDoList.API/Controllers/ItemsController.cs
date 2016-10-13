@@ -28,6 +28,21 @@ namespace ToDoList.API.Controllers
         {
             return _itemRepository.GetAll();
         }
+        
+        [Route("api/Items/DeleteItem/{id:int}")]
+        [ResponseType(typeof(Item))]
+        public IHttpActionResult DeleteItem(int id)
+        {
+            var item = _itemRepository.GetItemById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            _itemRepository.DeleteItem(item);
+
+            return Ok(item);
+        }
 
         [ResponseType(typeof(Item))]
         public IHttpActionResult PostItem(Item item)

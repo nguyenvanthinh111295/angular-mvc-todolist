@@ -15,10 +15,22 @@ namespace ToDoList.Data.Repositories
             this._db = new ToDoListContext();
         }
 
+        public void DeleteItem(Item item)
+        {
+            _db.Items.Remove(item);
+            _db.SaveChanges();
+        }
+
         public IEnumerable<Item> GetAll()
         {
             var items = _db.Items.ToList();
             return items;
+        }
+
+        public Item GetItemById(int id)
+        {
+            var item = _db.Items.ToList().Find(i => i.Id == id);
+            return item;
         }
 
         public IEnumerable<Item> GetLabelItemsByLabelId(int labelId)
