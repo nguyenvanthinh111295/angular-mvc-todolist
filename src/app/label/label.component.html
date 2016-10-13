@@ -1,9 +1,9 @@
 <div class="content">
-    <form [formGroup]="labelForm" novalidate>
-        <md-toolbar color="default">
-            <span>{{label.Name}}</span>
-            <span class="fill-remaining-space"></span>
-            <span>
+	<form [formGroup]="labelForm" novalidate>
+		<md-toolbar color="default">
+			<span>{{label.Name}}</span>
+			<span class="fill-remaining-space"></span>
+			<span>
           <md-icon mwlConfirm
             [title]="title"
             [message]="message"
@@ -13,35 +13,34 @@
             [(isOpen)]="isOpen">delete
           </md-icon>
       </span>
-        </md-toolbar>
-        <md-card>
-            <md-card-content>
-                <md-input [(ngModel)]="item.Name" formControlName="itemName" class="full-width" placeholder="Title" align="start"></md-input>
-                <control-messages [control]="labelForm.controls.itemName"></control-messages>
-                <textarea [(ngModel)]="item.Content" formControlName="itemContent" class="full-width" placeholder="Write a note"></textarea>
-            </md-card-content>
-            <md-card-actions layout="row" style="text-align:right">
-                <button md-button (click)="save(item)" [disabled]="!labelForm.valid" style="font-weight:bold; color:#757575">
+		</md-toolbar>
+		<md-card>
+			<md-card-content>
+				<md-input [(ngModel)]="item.Name" formControlName="itemName" class="full-width" placeholder="Title" align="start"></md-input>
+				<control-messages [control]="labelForm.controls.itemName"></control-messages>
+				<textarea [(ngModel)]="item.Content" formControlName="itemContent" class="full-width" placeholder="Write a note"></textarea>
+			</md-card-content>
+			<md-card-actions layout="row" style="text-align:right">
+				<button md-button (click)="save(item)" [disabled]="!labelForm.valid" style="font-weight:bold; color:#757575">
                     Finish
                 </button>
-            </md-card-actions>
-        </md-card>
-    </form>
+			</md-card-actions>
+		</md-card>
+	</form>
 </div>
 <div class="item-list">
-    <div>
-        <md-card *ngFor="let item of items" (click)="getItemDetail(item)">
-            <md-card-title>{{item.Name}}</md-card-title>
-            <md-card-content>
-                <p>{{item.Content}}</p>
-            </md-card-content>
-            <div style="height: 25px;">
-                <md-card-actions class="button-actions">
-                <button md-button>LIKE</button>
-                <button md-button>SHARE</button>
-            </md-card-actions>
-            </div>
-            
-        </md-card>
-    </div>
+	<div>
+		<md-card *ngFor="let item of items">
+			<md-card-title>{{item.Name}}</md-card-title>
+			<md-card-content>
+				<p>{{item.Content}}</p>
+			</md-card-content>
+			<div style="height:18px;">
+				<md-card-actions class="button-actions">
+                    <md-icon (click)="deleteItem(item)">delete</md-icon>
+                    <md-icon>brush</md-icon>
+				</md-card-actions>
+			</div>
+		</md-card>
+	</div>
 </div>

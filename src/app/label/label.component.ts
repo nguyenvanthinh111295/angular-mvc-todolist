@@ -100,8 +100,12 @@ export class LabelComponent implements OnInit {
         }
     }
 
-    getItemDetail(item: Item){
-        alert(item.Id);
+    deleteItem(item: Item){
+        this.itemService
+            .delete(item)
+            .then(items => {
+                this.getLabelItems(item);
+            });
     }
 
     ngOnInit() {
