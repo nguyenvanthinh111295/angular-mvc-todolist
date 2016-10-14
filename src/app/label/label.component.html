@@ -29,18 +29,14 @@
 	</form>
 </div>
 <div class="item-list">
-	<div>
-		<md-card *ngFor="let item of items">
-			<md-card-title>{{item.Name}}</md-card-title>
-			<md-card-content>
-				<p>{{item.Content}}</p>
-			</md-card-content>
-			<div style="height:18px;">
-				<md-card-actions class="button-actions">
-                    <md-icon (click)="deleteItem(item)">delete</md-icon>
-                    <md-icon>brush</md-icon>
-				</md-card-actions>
-			</div>
-		</md-card>
-	</div>
+	<md-card *ngFor="let item of items">
+		<md-card-title>{{item.Name}}</md-card-title>
+		<md-card-content>
+			{{item.Content}}
+		</md-card-content>
+		<md-card-actions>
+			<md-icon (click)="deleteItem(item)">delete</md-icon>
+			<md-icon>brush</md-icon>
+		</md-card-actions>
+	</md-card>
 </div>
