@@ -51,7 +51,7 @@ namespace ToDoList.Data.Repositories
             _tdlContext.SaveChanges();
         }
 
-        private bool disposed = false;
+        private bool disposed;
 
         protected virtual void Dispose(bool disposing)
         {
