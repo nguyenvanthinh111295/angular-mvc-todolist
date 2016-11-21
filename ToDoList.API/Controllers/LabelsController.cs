@@ -14,7 +14,7 @@ namespace ToDoList.API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LabelsController : ApiController
     {
-        private ILabelRepository _labelRepository;
+        private readonly ILabelRepository _labelRepository;
 
         public LabelsController()
         {
