@@ -1,18 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmOptions, Position } from 'angular2-bootstrap-confirm';
-import { Positioning } from 'angular2-bootstrap-confirm/position/';
 
 import { Label } from './shared/label/';
 import { LabelService } from './shared/label.service';
 import { Item } from './../item/shared/item';
 import { ItemService } from './../item/shared/item.service';
 
-import { AppComponent  } from './../app.component';
-
-const options: ConfirmOptions = new ConfirmOptions();
-options.focusButton = 'confirm';
+import { AppComponent } from './../app.component';
 
 @Component({
     selector: 'labels',
@@ -26,12 +21,6 @@ export class LabelComponent implements OnInit {
     @Input() item: Item;
     selectedLabel: Label;
     toolbarTitle: string = "New label";
-
-    // for confirm dialog
-    title: string = "Delete";
-    message: string = 'Are you sure delete this Label ?';
-    cancelClicked: boolean = false;
-    isOpen: boolean = false;
 
     labelForm: FormGroup;
 
@@ -70,21 +59,26 @@ export class LabelComponent implements OnInit {
     }
 
     private delete(label: Label) {
-        this.labelService
+        var result = confirm("Do you want to delete this Label ?");
+        if(result)
+        {
+            this.labelService
             .delete(label)
             .then(label => {
                 this.appComponent.getAllLabel();
                 this.router.navigateByUrl('/');
             });
+            alert("deleted");
+        }
     }
 
     items: any[];
-    getLabelItems(item: Item){
+    getLabelItems(item: Item) {
         this.activedRoute.params.subscribe(params => {
             if (params['Id'] !== undefined) {
                 this.item.LabelId = +params['Id'];
                 this.itemService.getLabelItemsByLabelId(item)
-                .then(items => this.items = items.json());
+                    .then(items => this.items = items.json());
             }
         });
     }
@@ -100,12 +94,16 @@ export class LabelComponent implements OnInit {
         }
     }
 
-    deleteItem(item: Item){
-        this.itemService
+    deleteItem(item: Item) {
+        var result = confirm("Do you want to delete this Item ?");
+        if(result)
+        {
+            this.itemService
             .delete(item)
             .then(items => {
                 this.getLabelItems(item);
             });
+        }
     }
 
     ngOnInit() {

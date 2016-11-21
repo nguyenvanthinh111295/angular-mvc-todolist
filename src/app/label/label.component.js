@@ -11,14 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
-var angular2_bootstrap_confirm_1 = require('angular2-bootstrap-confirm');
 var _1 = require('./shared/label/');
 var label_service_1 = require('./shared/label.service');
 var item_1 = require('./../item/shared/item');
 var item_service_1 = require('./../item/shared/item.service');
 var app_component_1 = require('./../app.component');
-var options = new angular2_bootstrap_confirm_1.ConfirmOptions();
-options.focusButton = 'confirm';
 var LabelComponent = (function () {
     function LabelComponent(labelService, itemService, formBuilder, appComponent, activedRoute, router) {
         this.labelService = labelService;
@@ -28,11 +25,6 @@ var LabelComponent = (function () {
         this.activedRoute = activedRoute;
         this.router = router;
         this.toolbarTitle = "New label";
-        // for confirm dialog
-        this.title = "Delete";
-        this.message = 'Are you sure delete this Label ?';
-        this.cancelClicked = false;
-        this.isOpen = false;
         this.labelForm = formBuilder.group({
             itemName: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(250)]],
             itemContent: ''
@@ -59,12 +51,16 @@ var LabelComponent = (function () {
     };
     LabelComponent.prototype.delete = function (label) {
         var _this = this;
-        this.labelService
-            .delete(label)
-            .then(function (label) {
-            _this.appComponent.getAllLabel();
-            _this.router.navigateByUrl('/');
-        });
+        var result = confirm("Do you want to delete this Label ?");
+        if (result) {
+            this.labelService
+                .delete(label)
+                .then(function (label) {
+                _this.appComponent.getAllLabel();
+                _this.router.navigateByUrl('/');
+            });
+            alert("deleted");
+        }
     };
     LabelComponent.prototype.getLabelItems = function (item) {
         var _this = this;
@@ -89,11 +85,14 @@ var LabelComponent = (function () {
     };
     LabelComponent.prototype.deleteItem = function (item) {
         var _this = this;
-        this.itemService
-            .delete(item)
-            .then(function (items) {
-            _this.getLabelItems(item);
-        });
+        var result = confirm("Do you want to delete this Item ?");
+        if (result) {
+            this.itemService
+                .delete(item)
+                .then(function (items) {
+                _this.getLabelItems(item);
+            });
+        }
     };
     LabelComponent.prototype.ngOnInit = function () {
         this.InitialLabel();
