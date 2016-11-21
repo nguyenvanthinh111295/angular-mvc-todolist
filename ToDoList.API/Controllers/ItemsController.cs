@@ -17,7 +17,7 @@ namespace ToDoList.API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ItemsController : ApiController
     {
-        private IItemRepository _itemRepository = null;
+        private readonly IItemRepository _itemRepository;
 
         public ItemsController()
         {
