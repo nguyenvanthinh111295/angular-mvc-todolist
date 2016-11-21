@@ -24,8 +24,7 @@ import { ValidationService } from './validation.service';
 // import materials
 import { MdToolbarModule } from         '@angular2-material/toolbar'
 import { MdSidenavModule } from         '@angular2-material/sidenav'
-import { MdIconModule } from            '@angular2-material/icon'
-import { MdIconRegistry } from          '@angular2-material/icon'
+import { MdIconModule, MdIconRegistry } from '@angular2-material/icon'
 import { MdButtonToggleModule } from    '@angular2-material/button-toggle'
 import { MdButtonModule } from          '@angular2-material/button'
 import { MdListModule } from            '@angular2-material/list'
@@ -37,10 +36,6 @@ import { MdProgressCircleModule } from  '@angular2-material/progress-circle'
 import { MdGridListModule } from        '@angular2-material/grid-list'
 
 // import another libraries
-import { Positioning } from 'angular2-bootstrap-confirm/position/';
-import {ConfirmModule, ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
-const options: ConfirmOptions = new ConfirmOptions();
-
 
 @NgModule({
     imports: [
@@ -61,20 +56,17 @@ const options: ConfirmOptions = new ConfirmOptions();
         MdToolbarModule.forRoot(),
         MdProgressBarModule.forRoot(),
         MdProgressCircleModule.forRoot(),
-        MdGridListModule.forRoot(),
-        ConfirmModule
+        MdGridListModule.forRoot()
     ],
     declarations: [
         AppComponent,
         HomeComponent,
         ItemsComponent,
         LabelComponent,
-        ControlMessagesComponent
+        ControlMessagesComponent,
     ],
     providers: [
         MdIconRegistry,
-        ConfirmOptions, // for comfrirm dialog
-        {provide: Position, useClass: Positioning}, // for comfrirm dialog
         ValidationService,
         ItemService,
         LabelService

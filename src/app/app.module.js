@@ -29,7 +29,6 @@ var validation_service_1 = require('./validation.service');
 var toolbar_1 = require('@angular2-material/toolbar');
 var sidenav_1 = require('@angular2-material/sidenav');
 var icon_1 = require('@angular2-material/icon');
-var icon_2 = require('@angular2-material/icon');
 var button_toggle_1 = require('@angular2-material/button-toggle');
 var button_1 = require('@angular2-material/button');
 var list_1 = require('@angular2-material/list');
@@ -40,9 +39,6 @@ var progress_bar_1 = require('@angular2-material/progress-bar');
 var progress_circle_1 = require('@angular2-material/progress-circle');
 var grid_list_1 = require('@angular2-material/grid-list');
 // import another libraries
-var _1 = require('angular2-bootstrap-confirm/position/');
-var angular2_bootstrap_confirm_1 = require('angular2-bootstrap-confirm');
-var options = new angular2_bootstrap_confirm_1.ConfirmOptions();
 var AppModule = (function () {
     function AppModule() {
     }
@@ -66,20 +62,17 @@ var AppModule = (function () {
                 toolbar_1.MdToolbarModule.forRoot(),
                 progress_bar_1.MdProgressBarModule.forRoot(),
                 progress_circle_1.MdProgressCircleModule.forRoot(),
-                grid_list_1.MdGridListModule.forRoot(),
-                angular2_bootstrap_confirm_1.ConfirmModule
+                grid_list_1.MdGridListModule.forRoot()
             ],
             declarations: [
                 app_component_1.AppComponent,
                 home_component_1.HomeComponent,
                 items_component_1.ItemsComponent,
                 label_component_1.LabelComponent,
-                control_messages_component_1.ControlMessagesComponent
+                control_messages_component_1.ControlMessagesComponent,
             ],
             providers: [
-                icon_2.MdIconRegistry,
-                angular2_bootstrap_confirm_1.ConfirmOptions,
-                { provide: angular2_bootstrap_confirm_1.Position, useClass: _1.Positioning },
+                icon_1.MdIconRegistry,
                 validation_service_1.ValidationService,
                 item_service_1.ItemService,
                 label_service_1.LabelService
