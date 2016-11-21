@@ -36,8 +36,6 @@
       '@angular2-material/progress-bar':        'node_modules/@angular2-material/progress-bar',
       '@angular2-material/progress-circle':     'node_modules/@angular2-material/progress-circle',
       '@angular2-material/grid-list':            'node_modules/@angular2-material/grid-list',
-      'angular2-bootstrap-confirm':             'node_modules/angular2-bootstrap-confirm',
-      'angular2-bootstrap-confirm/position':    'node_modules/angular2-bootstrap-confirm/position',
 
       // other libraries
       'rxjs':                       'npm:rxjs',
