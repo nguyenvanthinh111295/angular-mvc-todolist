@@ -154,7 +154,6 @@ _TeamCity*
 # Visual Studio code coverage results
 *.coverage
 *.coveragexml
-npm-debug.log
 
 # NCrunch
 _NCrunch_*
@@ -311,3 +310,6 @@ __pycache__/
 
 ### VisualStudio Patch ###
 build/
+
+# Logs
+npm-debug.log*
