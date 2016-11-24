@@ -154,6 +154,7 @@ _TeamCity*
 # Visual Studio code coverage results
 *.coverage
 *.coveragexml
+npm-debug.log
 
 # NCrunch
 _NCrunch_*
