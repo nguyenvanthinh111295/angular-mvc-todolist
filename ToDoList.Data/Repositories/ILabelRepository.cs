@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ToDoList.Data.Repositories
 {
-    public interface ILabelRepository : IDisposable
+    public interface ILabelRepository
     {
         IEnumerable<Label> GetLabels();
         Label GetLabelById(int id);
@@ -14,5 +14,6 @@ namespace ToDoList.Data.Repositories
         void UpdateLabel(Label label);
         void DeleteLabel(Label label);
         void Save();
+        IEnumerable<Item> GetLabelsHaveItemById(int labelId);
     }
 }
