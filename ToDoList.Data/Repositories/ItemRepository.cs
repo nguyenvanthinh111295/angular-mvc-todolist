@@ -8,7 +8,7 @@ namespace ToDoList.Data.Repositories
 {
     public class ItemRepository : IItemRepository
     {
-        private ToDoListContext _db = null;
+        private readonly ToDoListContext _db;
 
         public ItemRepository()
         {
