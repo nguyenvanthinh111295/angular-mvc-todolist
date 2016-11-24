@@ -51,16 +51,25 @@ var LabelComponent = (function () {
     };
     LabelComponent.prototype.delete = function (label) {
         var _this = this;
-        var result = confirm("Do you want to delete this Label ?");
-        if (result) {
-            this.labelService
-                .delete(label)
-                .then(function (label) {
-                _this.appComponent.getAllLabel();
-                _this.router.navigateByUrl('/');
-            });
-            alert("deleted");
-        }
+        this.labelService.getLabelsHaveItemById(label.Id)
+            .then(function (labels) {
+            _this.labels = labels.json();
+            if (_this.labels.length > 0) {
+                alert(" ERROR: This label own item. Therefore you can not delete it !");
+            }
+            else {
+                var result = confirm("Do you want to delete this Label ?");
+                if (result) {
+                    _this.labelService
+                        .delete(label)
+                        .then(function (label) {
+                        _this.appComponent.getAllLabel();
+                        _this.router.navigateByUrl('/');
+                    });
+                    alert("deleted");
+                }
+            }
+        });
     };
     LabelComponent.prototype.getLabelItems = function (item) {
         var _this = this;

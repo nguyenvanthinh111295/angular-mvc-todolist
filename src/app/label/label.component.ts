@@ -59,17 +59,25 @@ export class LabelComponent implements OnInit {
     }
 
     private delete(label: Label) {
-        var result = confirm("Do you want to delete this Label ?");
-        if(result)
-        {
-            this.labelService
-            .delete(label)
-            .then(label => {
-                this.appComponent.getAllLabel();
-                this.router.navigateByUrl('/');
-            });
-            alert("deleted");
-        }
+        this.labelService.getLabelsHaveItemById(label.Id)
+            .then(labels => {
+                this.labels = labels.json();
+                if (this.labels.length > 0) {
+                    alert(" ERROR: This label own item. Therefore you can not delete it !");
+                }
+                else {
+                    var result = confirm("Do you want to delete this Label ?");
+                    if (result) {
+                        this.labelService
+                            .delete(label)
+                            .then(label => {
+                                this.appComponent.getAllLabel();
+                                this.router.navigateByUrl('/');
+                            });
+                        alert("deleted");
+                    }
+                }
+            })
     }
 
     items: any[];
@@ -96,13 +104,12 @@ export class LabelComponent implements OnInit {
 
     deleteItem(item: Item) {
         var result = confirm("Do you want to delete this Item ?");
-        if(result)
-        {
+        if (result) {
             this.itemService
-            .delete(item)
-            .then(items => {
-                this.getLabelItems(item);
-            });
+                .delete(item)
+                .then(items => {
+                    this.getLabelItems(item);
+                });
         }
     }
 
