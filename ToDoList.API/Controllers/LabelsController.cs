@@ -10,17 +10,19 @@ using ToDoList.Data;
 using ToDoList.Data.Repositories;
 
 namespace ToDoList.API.Controllers
-{                                                                                
+{
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LabelsController : ApiController
     {
         private readonly ILabelRepository _labelRepository;
-
+        private readonly IItemRepository _itemRepository;
+        
         public LabelsController()
         {
-            _labelRepository = new LabelRepository(new ToDoListContext());
+            _labelRepository = new LabelRepository();
+            _itemRepository = new ItemRepository();
         }
-        
+
         public IEnumerable<Label> GetLabels()
         {
             return _labelRepository.GetLabels();
@@ -87,5 +89,11 @@ namespace ToDoList.API.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [Route("api/Labels/GetLabelsHaveItemById/{id:int}")]
+        public IHttpActionResult GetLabelsHaveItemById(int id)
+        {
+            var labels = _labelRepository.GetLabelsHaveItemById(id);
+            return Ok(labels);
+        }                                                         
     }
 }
