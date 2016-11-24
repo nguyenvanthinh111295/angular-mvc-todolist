@@ -9,66 +9,52 @@ namespace ToDoList.Data.Repositories
 {
     public class LabelRepository : ILabelRepository
     {
-        private ToDoListContext _tdlContext;
+        private readonly ToDoListContext _db;
 
-        public LabelRepository(ToDoListContext tdlContext)
+        public LabelRepository()
         {
-            _tdlContext = tdlContext;
+            _db = new ToDoListContext();
         }
 
         public void DeleteLabel(Label label)
         {
-            _tdlContext.Labels.Remove(label);
+            _db.Labels.Remove(label);
             Save();
         }
 
         public IEnumerable<Label> GetLabels()
         {
-            var labels = _tdlContext.Labels.ToList();
+            var labels = _db.Labels.ToList();
             return labels;
         }
 
         public Label GetLabelById(int id)
         {
-            var label = _tdlContext.Labels.ToList().Find(l => l.Id == id);
+            var label = _db.Labels.ToList().Find(l => l.Id == id);
             return label;
         }
 
         public void InsertLabel(Label label)
         {
-            _tdlContext.Labels.Add(label);
+            _db.Labels.Add(label);
             Save();
         }
 
         public void UpdateLabel(Label label)
         {
-            _tdlContext.Entry(label).State = EntityState.Modified;
+            _db.Entry(label).State = EntityState.Modified;
             Save();
         }
 
         public void Save()
         {
-            _tdlContext.SaveChanges();
+            _db.SaveChanges();
         }
 
-        private bool disposed;
-
-        protected virtual void Dispose(bool disposing)
+        public IEnumerable<Item> GetLabelsHaveItemById(int labelId)
         {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    _tdlContext.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            var labels = _db.Items.Where(i => i.LabelId == labelId);
+            return labels;
         }
     }
 }
