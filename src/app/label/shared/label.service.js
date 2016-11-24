@@ -56,6 +56,12 @@ var LabelService = (function () {
             .toPromise()
             .catch(this.handleError);
     };
+    LabelService.prototype.getLabelsHaveItemById = function (labelId) {
+        return this.http
+            .get((this.labelsUrl + "/" + "GetLabelsHaveItemById") + "/" + labelId, this.headers)
+            .toPromise()
+            .catch(this.handleError);
+    };
     LabelService.prototype.handleError = function (error) {
         console.error('An error occured', error);
         return Promise.reject(error.message || error);

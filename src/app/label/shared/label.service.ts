@@ -63,6 +63,13 @@ export class LabelService {
             .catch(this.handleError);
     }
 
+    getLabelsHaveItemById(labelId: number){
+        return this.http
+            .get(`${this.labelsUrl + "/" + "GetLabelsHaveItemById"}/${labelId}`, this.headers)
+            .toPromise()
+            .catch(this.handleError);
+    }
+    
     private handleError(error: any) {
         console.error('An error occured', error);
         return Promise.reject(error.message || error);
