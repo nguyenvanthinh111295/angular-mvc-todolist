@@ -26,18 +26,7 @@ var item_service_1 = require('./item/shared/item.service');
 var label_service_1 = require('./label/shared/label.service');
 var validation_service_1 = require('./validation.service');
 // import materials
-var toolbar_1 = require('@angular2-material/toolbar');
-var sidenav_1 = require('@angular2-material/sidenav');
-var icon_1 = require('@angular2-material/icon');
-var button_toggle_1 = require('@angular2-material/button-toggle');
-var button_1 = require('@angular2-material/button');
-var list_1 = require('@angular2-material/list');
-var card_1 = require('@angular2-material/card');
-var input_1 = require('@angular2-material/input');
-var tooltip_1 = require('@angular2-material/tooltip');
-var progress_bar_1 = require('@angular2-material/progress-bar');
-var progress_circle_1 = require('@angular2-material/progress-circle');
-var grid_list_1 = require('@angular2-material/grid-list');
+var material_1 = require('@angular/material');
 // import another libraries
 var AppModule = (function () {
     function AppModule() {
@@ -50,19 +39,7 @@ var AppModule = (function () {
                 forms_1.ReactiveFormsModule,
                 http_1.HttpModule,
                 app_routing_1.routing,
-                toolbar_1.MdToolbarModule.forRoot(),
-                sidenav_1.MdSidenavModule.forRoot(),
-                icon_1.MdIconModule.forRoot(),
-                button_toggle_1.MdButtonToggleModule.forRoot(),
-                list_1.MdListModule.forRoot(),
-                button_1.MdButtonModule.forRoot(),
-                card_1.MdCardModule.forRoot(),
-                input_1.MdInputModule.forRoot(),
-                tooltip_1.MdTooltipModule.forRoot(),
-                toolbar_1.MdToolbarModule.forRoot(),
-                progress_bar_1.MdProgressBarModule.forRoot(),
-                progress_circle_1.MdProgressCircleModule.forRoot(),
-                grid_list_1.MdGridListModule.forRoot()
+                material_1.MaterialModule.forRoot()
             ],
             declarations: [
                 app_component_1.AppComponent,
@@ -72,7 +49,6 @@ var AppModule = (function () {
                 control_messages_component_1.ControlMessagesComponent,
             ],
             providers: [
-                icon_1.MdIconRegistry,
                 validation_service_1.ValidationService,
                 item_service_1.ItemService,
                 label_service_1.LabelService
