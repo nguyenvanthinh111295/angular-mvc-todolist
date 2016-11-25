@@ -22,18 +22,7 @@ import { LabelService } from './label/shared/label.service';
 import { ValidationService } from './validation.service';
 
 // import materials
-import { MdToolbarModule } from         '@angular2-material/toolbar'
-import { MdSidenavModule } from         '@angular2-material/sidenav'
-import { MdIconModule, MdIconRegistry } from '@angular2-material/icon'
-import { MdButtonToggleModule } from    '@angular2-material/button-toggle'
-import { MdButtonModule } from          '@angular2-material/button'
-import { MdListModule } from            '@angular2-material/list'
-import { MdCardModule } from            '@angular2-material/card'
-import { MdInputModule } from           '@angular2-material/input'
-import { MdTooltipModule } from         '@angular2-material/tooltip'
-import { MdProgressBarModule } from     '@angular2-material/progress-bar'
-import { MdProgressCircleModule } from  '@angular2-material/progress-circle'
-import { MdGridListModule } from        '@angular2-material/grid-list'
+import { MaterialModule } from '@angular/material'
 
 // import another libraries
 
@@ -44,19 +33,7 @@ import { MdGridListModule } from        '@angular2-material/grid-list'
         ReactiveFormsModule,
         HttpModule,
         routing,
-        MdToolbarModule.forRoot(),
-        MdSidenavModule.forRoot(),
-        MdIconModule.forRoot(),
-        MdButtonToggleModule.forRoot(),
-        MdListModule.forRoot(),
-        MdButtonModule.forRoot(),
-        MdCardModule.forRoot(),
-        MdInputModule.forRoot(),
-        MdTooltipModule.forRoot(),
-        MdToolbarModule.forRoot(),
-        MdProgressBarModule.forRoot(),
-        MdProgressCircleModule.forRoot(),
-        MdGridListModule.forRoot()
+        MaterialModule.forRoot()
     ],
     declarations: [
         AppComponent,
@@ -66,7 +43,6 @@ import { MdGridListModule } from        '@angular2-material/grid-list'
         ControlMessagesComponent,
     ],
     providers: [
-        MdIconRegistry,
         ValidationService,
         ItemService,
         LabelService
