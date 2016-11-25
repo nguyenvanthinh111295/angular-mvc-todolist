@@ -11,19 +11,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
+var material_1 = require('@angular/material');
 var _1 = require('./shared/label/');
 var label_service_1 = require('./shared/label.service');
 var item_1 = require('./../item/shared/item');
 var item_service_1 = require('./../item/shared/item.service');
 var app_component_1 = require('./../app.component');
+var ConfirmDialog_1 = require('./../shared/ConfirmDialog');
 var LabelComponent = (function () {
-    function LabelComponent(labelService, itemService, formBuilder, appComponent, activedRoute, router) {
+    function LabelComponent(labelService, itemService, formBuilder, appComponent, activedRoute, router, dialog) {
         this.labelService = labelService;
         this.itemService = itemService;
         this.formBuilder = formBuilder;
         this.appComponent = appComponent;
         this.activedRoute = activedRoute;
         this.router = router;
+        this.dialog = dialog;
         this.toolbarTitle = "New label";
         this.labelForm = formBuilder.group({
             itemName: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(250)]],
@@ -58,16 +61,13 @@ var LabelComponent = (function () {
                 alert(" ERROR: This label own item. Therefore you can not delete it !");
             }
             else {
-                var result = confirm("Do you want to delete this Label ?");
-                if (result) {
-                    _this.labelService
-                        .delete(label)
-                        .then(function (label) {
-                        _this.appComponent.getAllLabel();
-                        _this.router.navigateByUrl('/');
-                    });
-                    alert("deleted");
-                }
+                _this.labelService
+                    .delete(label)
+                    .then(function (label) {
+                    _this.appComponent.getAllLabel();
+                    _this.router.navigateByUrl('/');
+                });
+                alert("deleted");
             }
         });
     };
@@ -103,6 +103,18 @@ var LabelComponent = (function () {
             });
         }
     };
+    LabelComponent.prototype.openDialog = function () {
+        var _this = this;
+        this.dialogRef = this.dialog.open(ConfirmDialog_1.ConfirmDialog, {
+            disableClose: false
+        });
+        this.dialogRef.afterClosed().subscribe(function (result) {
+            if (result === "yes") {
+                _this.delete(_this.label);
+            }
+            _this.dialogRef = null;
+        });
+    };
     LabelComponent.prototype.ngOnInit = function () {
         this.InitialLabel();
         this.InitialItem();
@@ -122,7 +134,7 @@ var LabelComponent = (function () {
             selector: 'labels',
             templateUrl: 'app/label/label.component.html',
         }), 
-        __metadata('design:paramtypes', [label_service_1.LabelService, item_service_1.ItemService, forms_1.FormBuilder, app_component_1.AppComponent, router_1.ActivatedRoute, router_1.Router])
+        __metadata('design:paramtypes', [label_service_1.LabelService, item_service_1.ItemService, forms_1.FormBuilder, app_component_1.AppComponent, router_1.ActivatedRoute, router_1.Router, material_1.MdDialog])
     ], LabelComponent);
     return LabelComponent;
 }());

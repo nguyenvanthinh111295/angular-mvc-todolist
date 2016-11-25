@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { Label } from './shared/label/';
 import { LabelService } from './shared/label.service';
 import { Item } from './../item/shared/item';
 import { ItemService } from './../item/shared/item.service';
-
 import { AppComponent } from './../app.component';
+import { ConfirmDialog } from './../shared/ConfirmDialog';
 
 @Component({
     selector: 'labels',
@@ -21,8 +22,8 @@ export class LabelComponent implements OnInit {
     @Input() item: Item;
     selectedLabel: Label;
     toolbarTitle: string = "New label";
-
     labelForm: FormGroup;
+    dialogRef: MdDialogRef<ConfirmDialog>
 
     constructor(
         private labelService: LabelService,
@@ -30,7 +31,8 @@ export class LabelComponent implements OnInit {
         private formBuilder: FormBuilder,
         private appComponent: AppComponent,
         private activedRoute: ActivatedRoute,
-        private router: Router) {
+        private router: Router,
+        public dialog: MdDialog) {
         this.labelForm = formBuilder.group({
             itemName: ['', [Validators.required, Validators.maxLength(250)]],
             itemContent: ''
@@ -66,16 +68,13 @@ export class LabelComponent implements OnInit {
                     alert(" ERROR: This label own item. Therefore you can not delete it !");
                 }
                 else {
-                    var result = confirm("Do you want to delete this Label ?");
-                    if (result) {
-                        this.labelService
-                            .delete(label)
-                            .then(label => {
-                                this.appComponent.getAllLabel();
-                                this.router.navigateByUrl('/');
-                            });
-                        alert("deleted");
-                    }
+                    this.labelService
+                        .delete(label)
+                        .then(label => {
+                            this.appComponent.getAllLabel();
+                            this.router.navigateByUrl('/');
+                        });
+                    alert("deleted");
                 }
             })
     }
@@ -111,6 +110,19 @@ export class LabelComponent implements OnInit {
                     this.getLabelItems(item);
                 });
         }
+    }
+
+    openDialog() {
+        this.dialogRef = this.dialog.open(ConfirmDialog, {
+            disableClose: false
+        });
+
+        this.dialogRef.afterClosed().subscribe(result => {
+            if (result === "yes") {
+                this.delete(this.label);
+            }
+            this.dialogRef = null;
+        });
     }
 
     ngOnInit() {
