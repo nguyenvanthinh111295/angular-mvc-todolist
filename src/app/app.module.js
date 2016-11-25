@@ -13,7 +13,6 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
-// import routing
 var app_routing_1 = require('./app.routing');
 // import components
 var app_component_1 = require('./app.component');
@@ -27,6 +26,7 @@ var label_service_1 = require('./label/shared/label.service');
 var validation_service_1 = require('./validation.service');
 // import materials
 var material_1 = require('@angular/material');
+var ConfirmDialog_1 = require('./shared/ConfirmDialog');
 // import another libraries
 var AppModule = (function () {
     function AppModule() {
@@ -47,11 +47,15 @@ var AppModule = (function () {
                 items_component_1.ItemsComponent,
                 label_component_1.LabelComponent,
                 control_messages_component_1.ControlMessagesComponent,
+                ConfirmDialog_1.ConfirmDialog
             ],
             providers: [
                 validation_service_1.ValidationService,
                 item_service_1.ItemService,
                 label_service_1.LabelService
+            ],
+            entryComponents: [
+                ConfirmDialog_1.ConfirmDialog
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
