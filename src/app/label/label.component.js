@@ -19,7 +19,7 @@ var item_service_1 = require('./../item/shared/item.service');
 var app_component_1 = require('./../app.component');
 var ConfirmDialog_1 = require('./../shared/ConfirmDialog');
 var LabelComponent = (function () {
-    function LabelComponent(labelService, itemService, formBuilder, appComponent, activedRoute, router, dialog) {
+    function LabelComponent(labelService, itemService, formBuilder, appComponent, activedRoute, router, dialog, snackBar, viewContainerRef) {
         this.labelService = labelService;
         this.itemService = itemService;
         this.formBuilder = formBuilder;
@@ -27,6 +27,8 @@ var LabelComponent = (function () {
         this.activedRoute = activedRoute;
         this.router = router;
         this.dialog = dialog;
+        this.snackBar = snackBar;
+        this.viewContainerRef = viewContainerRef;
         this.toolbarTitle = "New label";
         this.labelForm = formBuilder.group({
             itemName: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(250)]],
@@ -67,7 +69,7 @@ var LabelComponent = (function () {
                     _this.appComponent.getAllLabel();
                     _this.router.navigateByUrl('/');
                 });
-                alert("deleted");
+                _this.successAttempt();
             }
         });
     };
@@ -115,6 +117,10 @@ var LabelComponent = (function () {
             _this.dialogRef = null;
         });
     };
+    LabelComponent.prototype.successAttempt = function () {
+        var config = new material_1.MdSnackBarConfig();
+        this.snackBar.open("The label has been deleted!", "close");
+    };
     LabelComponent.prototype.ngOnInit = function () {
         this.InitialLabel();
         this.InitialItem();
@@ -134,7 +140,7 @@ var LabelComponent = (function () {
             selector: 'labels',
             templateUrl: 'app/label/label.component.html',
         }), 
-        __metadata('design:paramtypes', [label_service_1.LabelService, item_service_1.ItemService, forms_1.FormBuilder, app_component_1.AppComponent, router_1.ActivatedRoute, router_1.Router, material_1.MdDialog])
+        __metadata('design:paramtypes', [label_service_1.LabelService, item_service_1.ItemService, forms_1.FormBuilder, app_component_1.AppComponent, router_1.ActivatedRoute, router_1.Router, material_1.MdDialog, material_1.MdSnackBar, core_1.ViewContainerRef])
     ], LabelComponent);
     return LabelComponent;
 }());

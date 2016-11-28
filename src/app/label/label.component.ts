@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MdDialog, MdDialogRef, MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
 import { Label } from './shared/label/';
 import { LabelService } from './shared/label.service';
@@ -23,7 +23,7 @@ export class LabelComponent implements OnInit {
     selectedLabel: Label;
     toolbarTitle: string = "New label";
     labelForm: FormGroup;
-    dialogRef: MdDialogRef<ConfirmDialog>
+    dialogRef: MdDialogRef<ConfirmDialog>;
 
     constructor(
         private labelService: LabelService,
@@ -32,7 +32,9 @@ export class LabelComponent implements OnInit {
         private appComponent: AppComponent,
         private activedRoute: ActivatedRoute,
         private router: Router,
-        public dialog: MdDialog) {
+        public dialog: MdDialog,
+        public snackBar: MdSnackBar,
+        public viewContainerRef: ViewContainerRef) {
         this.labelForm = formBuilder.group({
             itemName: ['', [Validators.required, Validators.maxLength(250)]],
             itemContent: ''
@@ -74,7 +76,7 @@ export class LabelComponent implements OnInit {
                             this.appComponent.getAllLabel();
                             this.router.navigateByUrl('/');
                         });
-                    alert("deleted");
+                    this.successAttempt();
                 }
             })
     }
@@ -123,6 +125,12 @@ export class LabelComponent implements OnInit {
             }
             this.dialogRef = null;
         });
+    }
+
+    successAttempt() {        
+        let config = new MdSnackBarConfig();
+         
+        this.snackBar.open("The label has been deleted!", "close");    
     }
 
     ngOnInit() {
