@@ -1,2 +1,9 @@
-<button type="button" (click)="dialogRef.close('yes')">Yes</button>
-<button type="button" (click)="dialogRef.close('no')">No</button>
+<md-card>
+    <md-card-content>
+        <h3>Would you like to delete this Label?</h3>
+    </md-card-content>
+    <md-card-actions>
+        <button md-button (click)="dialogRef.close('yes')">Yes</button>
+        <button md-button (click)="dialogRef.close('no')">No</button>
+    </md-card-actions>
+</md-card>
