@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MdDialog, MdDialogRef, MdSnackBar, MdSnackBarConfig } from '@angular/material';
@@ -8,7 +8,7 @@ import { LabelService } from './shared/label.service';
 import { Item } from './../item/shared/item';
 import { ItemService } from './../item/shared/item.service';
 import { AppComponent } from './../app.component';
-import { ConfirmDialog } from './../shared/ConfirmDialog';
+import { DialogService } from './../shared/dialog/dialog.service';
 
 @Component({
     selector: 'labels',
@@ -17,17 +17,18 @@ import { ConfirmDialog } from './../shared/ConfirmDialog';
 
 export class LabelComponent implements OnInit {
 
-    public labels: Array<any>;
+    public labels: any[];
+    private items: any[];
     @Input() label: Label;
     @Input() item: Item;
     selectedLabel: Label;
     toolbarTitle: string = "New label";
     labelForm: FormGroup;
-    dialogRef: MdDialogRef<ConfirmDialog>;
 
     constructor(
         private labelService: LabelService,
         private itemService: ItemService,
+        private dialogService: DialogService,
         private formBuilder: FormBuilder,
         private appComponent: AppComponent,
         private activedRoute: ActivatedRoute,
@@ -81,7 +82,6 @@ export class LabelComponent implements OnInit {
             })
     }
 
-    items: any[];
     getLabelItems(item: Item) {
         this.activedRoute.params.subscribe(params => {
             if (params['Id'] !== undefined) {
@@ -115,22 +115,19 @@ export class LabelComponent implements OnInit {
     }
 
     openDialog() {
-        this.dialogRef = this.dialog.open(ConfirmDialog, {
-            disableClose: false
-        });
-
-        this.dialogRef.afterClosed().subscribe(result => {
-            if (result === "yes") {
-                this.delete(this.label);
-            }
-            this.dialogRef = null;
-        });
+        this.dialogService
+            .confirm('Confirm Dialog', `Are you sure you want to do delete ${this.label.Name}`,
+            this.viewContainerRef)
+            .subscribe(res => {
+                if (res) {
+                    this.delete(this.label);
+                }
+            });
     }
 
-    successAttempt() {        
+    successAttempt() {
         let config = new MdSnackBarConfig();
-         
-        this.snackBar.open("The label has been deleted!", "close");    
+        this.snackBar.open("The label has been deleted!", "close");
     }
 
     ngOnInit() {

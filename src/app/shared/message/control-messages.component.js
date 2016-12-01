@@ -25,8 +25,7 @@ var ControlMessagesComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    ControlMessagesComponent.prototype.ngOnInit = function () {
-    };
+    ControlMessagesComponent.prototype.ngOnInit = function () { };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', forms_1.FormControl)

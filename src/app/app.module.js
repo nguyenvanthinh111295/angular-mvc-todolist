@@ -19,15 +19,15 @@ var app_component_1 = require('./app.component');
 var home_component_1 = require('./home/home.component');
 var items_component_1 = require('./item/items.component');
 var label_component_1 = require('./label/label.component');
-var control_messages_component_1 = require('./control-messages.component');
+var control_messages_component_1 = require('./shared/message/control-messages.component');
 // import services
 var item_service_1 = require('./item/shared/item.service');
 var label_service_1 = require('./label/shared/label.service');
-var validation_service_1 = require('./validation.service');
+var validation_service_1 = require('./shared/message/validation.service');
+var dialog_service_1 = require('./shared/dialog/dialog.service');
 // import materials
 var material_1 = require('@angular/material');
-var ConfirmDialog_1 = require('./shared/ConfirmDialog');
-// import another libraries
+var confirm_dialog_1 = require('./shared/dialog/confirm-dialog');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -47,15 +47,16 @@ var AppModule = (function () {
                 items_component_1.ItemsComponent,
                 label_component_1.LabelComponent,
                 control_messages_component_1.ControlMessagesComponent,
-                ConfirmDialog_1.ConfirmDialog
+                confirm_dialog_1.ConfirmDialog
             ],
             providers: [
                 validation_service_1.ValidationService,
                 item_service_1.ItemService,
-                label_service_1.LabelService
+                label_service_1.LabelService,
+                dialog_service_1.DialogService
             ],
             entryComponents: [
-                ConfirmDialog_1.ConfirmDialog
+                confirm_dialog_1.ConfirmDialog
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

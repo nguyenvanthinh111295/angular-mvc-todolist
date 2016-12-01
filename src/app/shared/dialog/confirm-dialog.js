@@ -18,11 +18,11 @@ var ConfirmDialog = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'confirm-dialog',
-            templateUrl: 'ConfirmDialog.html'
+            templateUrl: 'confirm-dialog.html'
         }), 
         __metadata('design:paramtypes', [material_1.MdDialogRef])
     ], ConfirmDialog);
     return ConfirmDialog;
 }());
 exports.ConfirmDialog = ConfirmDialog;
-//# sourceMappingURL=ConfirmDialog.js.map
+//# sourceMappingURL=confirm-dialog.js.map

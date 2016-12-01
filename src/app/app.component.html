@@ -1,10 +1,10 @@
 <div [hidden]="isLoading">
-    <md-progress-bar mode="determinate" [value]="determinateValue"></md-progress-bar>    
+    <md-progress-bar mode="determinate" [value]="determinateValue"></md-progress-bar>
 </div>
-<md-toolbar color="default">
+<md-toolbar color="primary">
     <button md-icon-button (click)="sidenav.toggle()">
-        <md-icon>menu</md-icon>
-    </button> My Notes
+        <md-icon style="color:#BDBDBD">menu</md-icon>
+    </button> <span>My Notes</span>
 </md-toolbar>
 <md-sidenav-layout class="left-navigation">
     <md-sidenav #sidenav mode="side" opened="false">
@@ -12,10 +12,10 @@
             <h3 md-subheader>Labels</h3>
             <md-list-item>
                 <h3 md-line>
-                <a (click)="openFormLabel(label)" style="cursor: hand">
-                  <md-icon fontSet="fa" fontIcon="fa-plus"></md-icon> Create new label
-                </a>
-              </h3>
+                    <a (click)="openFormLabel(label)" style="cursor: hand">
+                        <md-icon fontSet="fa" fontIcon="fa-plus"></md-icon> Create new label
+                    </a>
+                </h3>
             </md-list-item>
             <div *ngIf="formLabel" style="padding: 0 16px">
                 <md-input [(ngModel)]="label.Name" placeholder="Label name" style="width: 100%">

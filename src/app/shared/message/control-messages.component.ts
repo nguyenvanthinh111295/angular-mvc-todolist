@@ -23,7 +23,5 @@ export class ControlMessagesComponent implements OnInit {
 		}
 	}
 
-	ngOnInit() {
-		
-	}
+	ngOnInit() {}
 }
