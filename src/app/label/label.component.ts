@@ -68,7 +68,7 @@ export class LabelComponent implements OnInit {
             .then(labels => {
                 this.labels = labels.json();
                 if (this.labels.length > 0) {
-                    alert(" ERROR: This label own item. Therefore you can not delete it !");
+                    this.snackBar.open("ERROR: This label own item. Therefore you can not delete it !", "close");
                 }
                 else {
                     this.labelService
@@ -116,10 +116,10 @@ export class LabelComponent implements OnInit {
 
     openDialog() {
         this.dialogService
-            .confirm('Confirm Dialog', `Are you sure you want to do delete ${this.label.Name}`,
+            .confirm('Confirm Dialog', `Are you sure you want to do delete "${this.label.Name}"`,
             this.viewContainerRef)
-            .subscribe(res => {
-                if (res) {
+            .subscribe(result => {
+                if (result) {
                     this.delete(this.label);
                 }
             });
@@ -127,7 +127,7 @@ export class LabelComponent implements OnInit {
 
     successAttempt() {
         let config = new MdSnackBarConfig();
-        this.snackBar.open("The label has been deleted!", "close");
+        this.snackBar.open("SUCCESS: The label has been deleted!", "close");
     }
 
     ngOnInit() {

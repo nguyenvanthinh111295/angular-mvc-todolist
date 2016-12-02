@@ -61,7 +61,7 @@ var LabelComponent = (function () {
             .then(function (labels) {
             _this.labels = labels.json();
             if (_this.labels.length > 0) {
-                alert(" ERROR: This label own item. Therefore you can not delete it !");
+                _this.snackBar.open("ERROR: This label own item. Therefore you can not delete it !", "close");
             }
             else {
                 _this.labelService
@@ -109,16 +109,16 @@ var LabelComponent = (function () {
     LabelComponent.prototype.openDialog = function () {
         var _this = this;
         this.dialogService
-            .confirm('Confirm Dialog', "Are you sure you want to do delete " + this.label.Name, this.viewContainerRef)
-            .subscribe(function (res) {
-            if (res) {
+            .confirm('Confirm Dialog', "Are you sure you want to do delete \"" + this.label.Name + "\"", this.viewContainerRef)
+            .subscribe(function (result) {
+            if (result) {
                 _this.delete(_this.label);
             }
         });
     };
     LabelComponent.prototype.successAttempt = function () {
         var config = new material_1.MdSnackBarConfig();
-        this.snackBar.open("The label has been deleted!", "close");
+        this.snackBar.open("SUCCESS: The label has been deleted!", "close");
     };
     LabelComponent.prototype.ngOnInit = function () {
         this.InitialLabel();
