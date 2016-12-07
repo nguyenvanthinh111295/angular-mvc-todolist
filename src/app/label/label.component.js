@@ -18,13 +18,14 @@ var item_1 = require('./../item/shared/item');
 var item_service_1 = require('./../item/shared/item.service');
 var app_component_1 = require('./../app.component');
 var dialog_service_1 = require('./../shared/dialog/dialog.service');
+var itemDetail_dialog_component_1 = require('./../item/itemDetail-dialog.component');
 var LabelComponent = (function () {
-    function LabelComponent(labelService, itemService, dialogService, formBuilder, appComponent, activedRoute, router, dialog, snackBar, viewContainerRef) {
+    function LabelComponent(labelService, itemService, dialogService, appComponent, formBuilder, activedRoute, router, dialog, snackBar, viewContainerRef) {
         this.labelService = labelService;
         this.itemService = itemService;
         this.dialogService = dialogService;
-        this.formBuilder = formBuilder;
         this.appComponent = appComponent;
+        this.formBuilder = formBuilder;
         this.activedRoute = activedRoute;
         this.router = router;
         this.dialog = dialog;
@@ -106,7 +107,19 @@ var LabelComponent = (function () {
             });
         }
     };
-    LabelComponent.prototype.openDialog = function () {
+    LabelComponent.prototype.openItemDetail = function (item) {
+        var dialogRef;
+        dialogRef = this.dialog.open(itemDetail_dialog_component_1.ItemDetailDialog, {
+            disableClose: false,
+        });
+        dialogRef.componentInstance.Name = item.Name;
+        dialogRef.componentInstance.Content = item.Content;
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('result: ' + result);
+            dialogRef = null;
+        });
+    };
+    LabelComponent.prototype.confirmDialog = function () {
         var _this = this;
         this.dialogService
             .confirm('Confirm Dialog', "Are you sure you want to do delete \"" + this.label.Name + "\"", this.viewContainerRef)
@@ -139,7 +152,7 @@ var LabelComponent = (function () {
             selector: 'labels',
             templateUrl: 'app/label/label.component.html',
         }), 
-        __metadata('design:paramtypes', [label_service_1.LabelService, item_service_1.ItemService, dialog_service_1.DialogService, forms_1.FormBuilder, app_component_1.AppComponent, router_1.ActivatedRoute, router_1.Router, material_1.MdDialog, material_1.MdSnackBar, core_1.ViewContainerRef])
+        __metadata('design:paramtypes', [label_service_1.LabelService, item_service_1.ItemService, dialog_service_1.DialogService, app_component_1.AppComponent, forms_1.FormBuilder, router_1.ActivatedRoute, router_1.Router, material_1.MdDialog, material_1.MdSnackBar, core_1.ViewContainerRef])
     ], LabelComponent);
     return LabelComponent;
 }());

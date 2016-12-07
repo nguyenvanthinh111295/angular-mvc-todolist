@@ -8,7 +8,9 @@ import { LabelService } from './shared/label.service';
 import { Item } from './../item/shared/item';
 import { ItemService } from './../item/shared/item.service';
 import { AppComponent } from './../app.component';
+import { ItemsComponent } from './../item/items.component';
 import { DialogService } from './../shared/dialog/dialog.service';
+import { ItemDetailDialog } from './../item/itemDetail-dialog.component'
 
 @Component({
     selector: 'labels',
@@ -29,8 +31,8 @@ export class LabelComponent implements OnInit {
         private labelService: LabelService,
         private itemService: ItemService,
         private dialogService: DialogService,
-        private formBuilder: FormBuilder,
         private appComponent: AppComponent,
+        private formBuilder: FormBuilder,
         private activedRoute: ActivatedRoute,
         private router: Router,
         public dialog: MdDialog,
@@ -114,7 +116,23 @@ export class LabelComponent implements OnInit {
         }
     }
 
-    openDialog() {
+    openItemDetail(item: Item) {
+        let dialogRef: MdDialogRef<ItemDetailDialog>;
+        
+        dialogRef = this.dialog.open(ItemDetailDialog, {
+            disableClose: false,
+        });
+
+        dialogRef.componentInstance.Name = item.Name;
+        dialogRef.componentInstance.Content = item.Content;
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('result: ' + result);
+            dialogRef = null;
+        });
+    }
+
+    confirmDialog() {
         this.dialogService
             .confirm('Confirm Dialog', `Are you sure you want to do delete "${this.label.Name}"`,
             this.viewContainerRef)
