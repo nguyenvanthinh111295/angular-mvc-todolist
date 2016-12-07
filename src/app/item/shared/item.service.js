@@ -46,6 +46,10 @@ var ItemService = (function () {
             .toPromise()
             .catch(this.handleError);
     };
+    ItemService.prototype.getItemById = function (item) {
+        return this.http
+            .get((this.itemsUrl + 'GetItemDetail') + "/" + item.Id);
+    };
     ItemService.prototype.handleError = function (error) {
         console.error('An error occured', error);
         return Promise.reject(error.message || error);

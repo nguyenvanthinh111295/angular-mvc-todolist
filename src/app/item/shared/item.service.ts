@@ -49,6 +49,11 @@ export class ItemService {
             .catch(this.handleError);
     }
 
+    getItemById(item: Item): any{
+        return this.http
+        .get(`${this.itemsUrl + 'GetItemDetail'}/${item.Id}`)
+    }
+
     private handleError(error: any) {
         console.error('An error occured', error);
         return Promise.reject(error.message || error);
