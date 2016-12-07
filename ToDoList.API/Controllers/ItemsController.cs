@@ -64,5 +64,18 @@ namespace ToDoList.API.Controllers
             }
             return items;
         }
+
+        [Route("api/Items/GetItemDetail/{id:int}")]
+        public IHttpActionResult GetItemDetail(int id)
+        {
+            var item = _itemRepository.GetItemById(id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(item);
+        }
     }
 }
