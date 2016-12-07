@@ -10,7 +10,6 @@ import {ItemService}        from './shared/item.service';
 
 export class ItemsComponent implements OnInit{
     public items: Array<any>;
-    
     constructor(itemService: ItemService) { 
         let self: ItemsComponent = this;
         itemService.getItems().then(function (responseItem:any) {
