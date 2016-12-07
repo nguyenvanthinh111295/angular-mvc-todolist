@@ -28,6 +28,7 @@ var dialog_service_1 = require('./shared/dialog/dialog.service');
 // import materials
 var material_1 = require('@angular/material');
 var confirm_dialog_1 = require('./shared/dialog/confirm-dialog');
+var itemDetail_dialog_component_1 = require('./item/itemDetail-dialog.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -47,7 +48,8 @@ var AppModule = (function () {
                 items_component_1.ItemsComponent,
                 label_component_1.LabelComponent,
                 control_messages_component_1.ControlMessagesComponent,
-                confirm_dialog_1.ConfirmDialog
+                confirm_dialog_1.ConfirmDialog,
+                itemDetail_dialog_component_1.ItemDetailDialog
             ],
             providers: [
                 validation_service_1.ValidationService,
@@ -56,7 +58,8 @@ var AppModule = (function () {
                 dialog_service_1.DialogService
             ],
             entryComponents: [
-                confirm_dialog_1.ConfirmDialog
+                confirm_dialog_1.ConfirmDialog,
+                itemDetail_dialog_component_1.ItemDetailDialog
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
