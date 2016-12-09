@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var label_1 = require('./label/shared/label');
-var label_service_1 = require('./label/shared/label.service');
+var core_1 = require("@angular/core");
+var label_1 = require("./label/shared/label");
+var label_service_1 = require("./label/shared/label.service");
 var AppComponent = (function () {
     function AppComponent(labelService) {
         var _this = this;
@@ -59,18 +59,18 @@ var AppComponent = (function () {
         this.InitialLabel();
         this.getAllLabel();
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', label_1.Label)
-    ], AppComponent.prototype, "label", void 0);
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'todolist-app',
-            templateUrl: 'app/app.component.html',
-        }), 
-        __metadata('design:paramtypes', [label_service_1.LabelService])
-    ], AppComponent);
     return AppComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", label_1.Label)
+], AppComponent.prototype, "label", void 0);
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'todolist-app',
+        templateUrl: 'app/app.component.html',
+    }),
+    __metadata("design:paramtypes", [label_service_1.LabelService])
+], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

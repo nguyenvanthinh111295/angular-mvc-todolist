@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var item_service_1 = require('./shared/item.service');
+var core_1 = require("@angular/core");
+var item_service_1 = require("./shared/item.service");
 var ItemsComponent = (function () {
     function ItemsComponent(itemService) {
         var self = this;
@@ -18,14 +18,14 @@ var ItemsComponent = (function () {
         });
     }
     ItemsComponent.prototype.ngOnInit = function () { };
-    ItemsComponent = __decorate([
-        core_1.Component({
-            selector: 'items',
-            templateUrl: 'app/item/items.component.html'
-        }), 
-        __metadata('design:paramtypes', [item_service_1.ItemService])
-    ], ItemsComponent);
     return ItemsComponent;
 }());
+ItemsComponent = __decorate([
+    core_1.Component({
+        selector: 'items',
+        templateUrl: 'app/item/items.component.html'
+    }),
+    __metadata("design:paramtypes", [item_service_1.ItemService])
+], ItemsComponent);
 exports.ItemsComponent = ItemsComponent;
 //# sourceMappingURL=items.component.js.map

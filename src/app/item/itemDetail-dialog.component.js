@@ -8,20 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var material_1 = require('@angular/material');
+var core_1 = require("@angular/core");
+var material_1 = require("@angular/material");
 var ItemDetailDialog = (function () {
     function ItemDetailDialog(dialogRef) {
         this.dialogRef = dialogRef;
     }
-    ItemDetailDialog = __decorate([
-        core_1.Component({
-            selector: 'itemDetail-dialog',
-            templateUrl: 'app/item/itemDetail-dialog.component.html'
-        }), 
-        __metadata('design:paramtypes', [material_1.MdDialogRef])
-    ], ItemDetailDialog);
     return ItemDetailDialog;
 }());
+ItemDetailDialog = __decorate([
+    core_1.Component({
+        selector: 'itemDetail-dialog',
+        templateUrl: 'app/item/itemDetail-dialog.component.html'
+    }),
+    __metadata("design:paramtypes", [material_1.MdDialogRef])
+], ItemDetailDialog);
 exports.ItemDetailDialog = ItemDetailDialog;
 //# sourceMappingURL=itemDetail-dialog.component.js.map
