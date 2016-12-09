@@ -245,3 +245,8 @@ md-card md-card-content control-messages div {
     font-size: 18px;
     color: #212121;
 }
+
+div.md-overlay-pane
+{
+    position: absolute !important;
+}
