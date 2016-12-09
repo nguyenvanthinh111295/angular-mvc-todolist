@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-require('rxjs/Rx');
-var http_1 = require('@angular/http');
-var core_1 = require('@angular/core');
+require("rxjs/Rx");
+var http_1 = require("@angular/http");
+var core_1 = require("@angular/core");
 var ItemService = (function () {
     function ItemService(http) {
         this.http = http;
@@ -19,7 +19,7 @@ var ItemService = (function () {
     }
     ItemService.prototype.delete = function (item) {
         return this.http
-            .delete((this.itemsUrl + 'DeleteItem') + "/" + item.Id, this.headers)
+            .delete(this.itemsUrl + 'DeleteItem' + "/" + item.Id, this.headers)
             .toPromise()
             .catch(this.handleError);
     };
@@ -42,23 +42,23 @@ var ItemService = (function () {
     };
     ItemService.prototype.getLabelItemsByLabelId = function (item) {
         return this.http
-            .get((this.itemsUrl + 'GetLabelItems') + "/" + item.LabelId, this.headers)
+            .get(this.itemsUrl + 'GetLabelItems' + "/" + item.LabelId, this.headers)
             .toPromise()
             .catch(this.handleError);
     };
     ItemService.prototype.getItemById = function (item) {
         return this.http
-            .get((this.itemsUrl + 'GetItemDetail') + "/" + item.Id);
+            .get(this.itemsUrl + 'GetItemDetail' + "/" + item.Id);
     };
     ItemService.prototype.handleError = function (error) {
         console.error('An error occured', error);
         return Promise.reject(error.message || error);
     };
-    ItemService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], ItemService);
     return ItemService;
 }());
+ItemService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], ItemService);
 exports.ItemService = ItemService;
 //# sourceMappingURL=item.service.js.map
