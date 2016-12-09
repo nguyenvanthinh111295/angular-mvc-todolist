@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { MdDialog, MdDialogRef, MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
-import { Label } from './shared/label/';
+import { Label } from './shared/label';
 import { LabelService } from './shared/label.service';
 import { Item } from './../item/shared/item';
 import { ItemService } from './../item/shared/item.service';
@@ -118,7 +118,7 @@ export class LabelComponent implements OnInit {
 
     openItemDetail(item: Item) {
         let dialogRef: MdDialogRef<ItemDetailDialog>;
-        
+
         dialogRef = this.dialog.open(ItemDetailDialog, {
             disableClose: false,
         });
@@ -145,7 +145,8 @@ export class LabelComponent implements OnInit {
 
     successAttempt() {
         let config = new MdSnackBarConfig();
-        this.snackBar.open("SUCCESS: The label has been deleted!", "close");
+        config.duration = 3000
+        this.snackBar.open("SUCCESS: The label has been deleted!", "close", config);
     }
 
     ngOnInit() {

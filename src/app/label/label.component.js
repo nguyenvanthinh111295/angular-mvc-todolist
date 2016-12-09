@@ -8,17 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var forms_1 = require('@angular/forms');
-var router_1 = require('@angular/router');
-var material_1 = require('@angular/material');
-var _1 = require('./shared/label/');
-var label_service_1 = require('./shared/label.service');
-var item_1 = require('./../item/shared/item');
-var item_service_1 = require('./../item/shared/item.service');
-var app_component_1 = require('./../app.component');
-var dialog_service_1 = require('./../shared/dialog/dialog.service');
-var itemDetail_dialog_component_1 = require('./../item/itemDetail-dialog.component');
+var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
+var router_1 = require("@angular/router");
+var material_1 = require("@angular/material");
+var label_1 = require("./shared/label");
+var label_service_1 = require("./shared/label.service");
+var item_1 = require("./../item/shared/item");
+var item_service_1 = require("./../item/shared/item.service");
+var app_component_1 = require("./../app.component");
+var dialog_service_1 = require("./../shared/dialog/dialog.service");
+var itemDetail_dialog_component_1 = require("./../item/itemDetail-dialog.component");
 var LabelComponent = (function () {
     function LabelComponent(labelService, itemService, dialogService, appComponent, formBuilder, activedRoute, router, dialog, snackBar, viewContainerRef) {
         this.labelService = labelService;
@@ -38,7 +38,7 @@ var LabelComponent = (function () {
         });
     }
     LabelComponent.prototype.InitialLabel = function () {
-        this.label = new _1.Label();
+        this.label = new label_1.Label();
     };
     LabelComponent.prototype.InitialItem = function () {
         this.item = new item_1.Item();
@@ -131,7 +131,8 @@ var LabelComponent = (function () {
     };
     LabelComponent.prototype.successAttempt = function () {
         var config = new material_1.MdSnackBarConfig();
-        this.snackBar.open("SUCCESS: The label has been deleted!", "close");
+        config.duration = 3000;
+        this.snackBar.open("SUCCESS: The label has been deleted!", "close", config);
     };
     LabelComponent.prototype.ngOnInit = function () {
         this.InitialLabel();
@@ -139,22 +140,31 @@ var LabelComponent = (function () {
         this.labelDetail();
         this.getLabelItems(this.item);
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', _1.Label)
-    ], LabelComponent.prototype, "label", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', item_1.Item)
-    ], LabelComponent.prototype, "item", void 0);
-    LabelComponent = __decorate([
-        core_1.Component({
-            selector: 'labels',
-            templateUrl: 'app/label/label.component.html',
-        }), 
-        __metadata('design:paramtypes', [label_service_1.LabelService, item_service_1.ItemService, dialog_service_1.DialogService, app_component_1.AppComponent, forms_1.FormBuilder, router_1.ActivatedRoute, router_1.Router, material_1.MdDialog, material_1.MdSnackBar, core_1.ViewContainerRef])
-    ], LabelComponent);
     return LabelComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", label_1.Label)
+], LabelComponent.prototype, "label", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", item_1.Item)
+], LabelComponent.prototype, "item", void 0);
+LabelComponent = __decorate([
+    core_1.Component({
+        selector: 'labels',
+        templateUrl: 'app/label/label.component.html',
+    }),
+    __metadata("design:paramtypes", [label_service_1.LabelService,
+        item_service_1.ItemService,
+        dialog_service_1.DialogService,
+        app_component_1.AppComponent,
+        forms_1.FormBuilder,
+        router_1.ActivatedRoute,
+        router_1.Router,
+        material_1.MdDialog,
+        material_1.MdSnackBar,
+        core_1.ViewContainerRef])
+], LabelComponent);
 exports.LabelComponent = LabelComponent;
 //# sourceMappingURL=label.component.js.map
