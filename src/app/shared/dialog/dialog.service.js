@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var confirm_dialog_1 = require('./confirm-dialog');
-var material_1 = require('@angular/material');
-var core_1 = require('@angular/core');
+var confirm_dialog_1 = require("./confirm-dialog");
+var material_1 = require("@angular/material");
+var core_1 = require("@angular/core");
 var DialogService = (function () {
     function DialogService(dialog) {
         this.dialog = dialog;
@@ -24,11 +24,11 @@ var DialogService = (function () {
         dialogRef.componentInstance.message = message;
         return dialogRef.afterClosed();
     };
-    DialogService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [material_1.MdDialog])
-    ], DialogService);
     return DialogService;
 }());
+DialogService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [material_1.MdDialog])
+], DialogService);
 exports.DialogService = DialogService;
 //# sourceMappingURL=dialog.service.js.map

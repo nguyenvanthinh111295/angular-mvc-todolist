@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
 var LabelService = (function () {
     function LabelService(http) {
         this.http = http;
@@ -33,7 +33,7 @@ var LabelService = (function () {
     };
     LabelService.prototype.put = function (label) {
         return this.http
-            .put((this.labelsUrl + "/" + "PutLabel") + "/" + label.Id, JSON.stringify(label), { headers: this.headers })
+            .put(this.labelsUrl + "/" + "PutLabel" + "/" + label.Id, JSON.stringify(label), { headers: this.headers })
             .toPromise()
             .then(function () { return label; })
             .catch(this.handleError);
@@ -46,19 +46,19 @@ var LabelService = (function () {
     };
     LabelService.prototype.delete = function (label) {
         return this.http
-            .delete((this.labelsUrl + "/" + "DeleteLabel") + "/" + label.Id, this.headers)
+            .delete(this.labelsUrl + "/" + "DeleteLabel" + "/" + label.Id, this.headers)
             .toPromise()
             .catch(this.handleError);
     };
     LabelService.prototype.getDetail = function (labelId) {
         return this.http
-            .get((this.labelsUrl + "/" + "GetLabel") + "/" + labelId, this.headers)
+            .get(this.labelsUrl + "/" + "GetLabel" + "/" + labelId, this.headers)
             .toPromise()
             .catch(this.handleError);
     };
     LabelService.prototype.getLabelsHaveItemById = function (labelId) {
         return this.http
-            .get((this.labelsUrl + "/" + "GetLabelsHaveItemById") + "/" + labelId, this.headers)
+            .get(this.labelsUrl + "/" + "GetLabelsHaveItemById" + "/" + labelId, this.headers)
             .toPromise()
             .catch(this.handleError);
     };
@@ -66,11 +66,11 @@ var LabelService = (function () {
         console.error('An error occured', error);
         return Promise.reject(error.message || error);
     };
-    LabelService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], LabelService);
     return LabelService;
 }());
+LabelService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], LabelService);
 exports.LabelService = LabelService;
 //# sourceMappingURL=label.service.js.map
