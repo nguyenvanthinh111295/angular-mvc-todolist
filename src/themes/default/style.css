@@ -248,5 +248,5 @@ md-card md-card-content control-messages div {
 
 div.md-overlay-pane
 {
-    position: absolute !important;
+    position: fixed !important;
 }
