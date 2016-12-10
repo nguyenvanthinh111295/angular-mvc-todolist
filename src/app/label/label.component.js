@@ -71,7 +71,7 @@ var LabelComponent = (function () {
                     _this.appComponent.getAllLabel();
                     _this.router.navigateByUrl('/');
                 });
-                _this.successAttempt();
+                _this.successAttempt("\"" + label.Name + "\" have deleted successfully.");
             }
         });
     };
@@ -129,10 +129,10 @@ var LabelComponent = (function () {
             }
         });
     };
-    LabelComponent.prototype.successAttempt = function () {
+    LabelComponent.prototype.successAttempt = function (messageContent) {
         var config = new material_1.MdSnackBarConfig();
-        config.duration = 3000;
-        this.snackBar.open("SUCCESS: The label has been deleted!", "close", config);
+        config.duration = 5000;
+        this.snackBar.open(messageContent, "close", config);
     };
     LabelComponent.prototype.ngOnInit = function () {
         this.InitialLabel();

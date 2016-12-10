@@ -20,10 +20,10 @@
 	</form>
 </div>
 <div class="item-list">
-	<md-card *ngFor="let item of items" (click)="openItemDetail(item)">
+	<md-card *ngFor="let item of items">
 		<md-card-title>{{item.Name}}</md-card-title>
 		<md-card-content>
-			<div>{{item.Content}}</div>
+			<div (click)="openItemDetail(item)">{{item.Content}}</div>
 		</md-card-content>
 		<md-card-actions>
 			<md-icon (click)="deleteItem(item)">delete</md-icon>

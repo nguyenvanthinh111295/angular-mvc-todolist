@@ -79,7 +79,7 @@ export class LabelComponent implements OnInit {
                             this.appComponent.getAllLabel();
                             this.router.navigateByUrl('/');
                         });
-                    this.successAttempt();
+                    this.successAttempt(`"${label.Name}" have deleted successfully.`);
                 }
             })
     }
@@ -117,6 +117,7 @@ export class LabelComponent implements OnInit {
     }
 
     openItemDetail(item: Item) {
+        
         let dialogRef: MdDialogRef<ItemDetailDialog>;
 
         dialogRef = this.dialog.open(ItemDetailDialog, {
@@ -143,10 +144,10 @@ export class LabelComponent implements OnInit {
             });
     }
 
-    successAttempt() {
+    successAttempt(messageContent: string) {
         let config = new MdSnackBarConfig();
-        config.duration = 3000
-        this.snackBar.open("SUCCESS: The label has been deleted!", "close", config);
+        config.duration = 5000
+        this.snackBar.open(messageContent, "close", config);
     }
 
     ngOnInit() {
