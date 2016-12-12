@@ -10,7 +10,9 @@ import { ItemService } from './../item/shared/item.service';
 import { AppComponent } from './../app.component';
 import { ItemsComponent } from './../item/items.component';
 import { DialogService } from './../shared/dialog/dialog.service';
-import { ItemDetailDialog } from './../item/itemDetail-dialog.component'
+import { SnackBarService } from './../shared/notification/snackBar.Service';
+import { MessageTypes } from './../shared/notification/MessageTypes';
+import { ItemDetailDialog } from './../item/itemDetail-dialog.component';
 
 @Component({
     selector: 'labels',
@@ -31,6 +33,7 @@ export class LabelComponent implements OnInit {
         private labelService: LabelService,
         private itemService: ItemService,
         private dialogService: DialogService,
+        private snackBarService: SnackBarService,
         private appComponent: AppComponent,
         private formBuilder: FormBuilder,
         private activedRoute: ActivatedRoute,
@@ -70,7 +73,7 @@ export class LabelComponent implements OnInit {
             .then(labels => {
                 this.labels = labels.json();
                 if (this.labels.length > 0) {
-                    this.snackBar.open("ERROR: This label own item. Therefore you can not delete it !", "close");
+                    this.snackBarService.DisplayNotification(MessageTypes.ERROR, `"${label.Name}" own item. Therefore you can not delete it !`, 5000);
                 }
                 else {
                     this.labelService
@@ -79,7 +82,7 @@ export class LabelComponent implements OnInit {
                             this.appComponent.getAllLabel();
                             this.router.navigateByUrl('/');
                         });
-                    this.successAttempt(`"${label.Name}" have deleted successfully.`);
+                    this.snackBarService.DisplayNotification(MessageTypes.SUCCESS, `"${label.Name}" have deleted sucessfully !`, 5000);
                 }
             })
     }
@@ -143,13 +146,7 @@ export class LabelComponent implements OnInit {
                 }
             });
     }
-
-    successAttempt(messageContent: string) {
-        let config = new MdSnackBarConfig();
-        config.duration = 5000
-        this.snackBar.open(messageContent, "close", config);
-    }
-
+    
     ngOnInit() {
         this.InitialLabel();
         this.InitialItem();

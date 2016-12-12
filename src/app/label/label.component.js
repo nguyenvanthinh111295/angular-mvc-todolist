@@ -18,12 +18,15 @@ var item_1 = require("./../item/shared/item");
 var item_service_1 = require("./../item/shared/item.service");
 var app_component_1 = require("./../app.component");
 var dialog_service_1 = require("./../shared/dialog/dialog.service");
+var snackBar_Service_1 = require("./../shared/notification/snackBar.Service");
+var MessageTypes_1 = require("./../shared/notification/MessageTypes");
 var itemDetail_dialog_component_1 = require("./../item/itemDetail-dialog.component");
 var LabelComponent = (function () {
-    function LabelComponent(labelService, itemService, dialogService, appComponent, formBuilder, activedRoute, router, dialog, snackBar, viewContainerRef) {
+    function LabelComponent(labelService, itemService, dialogService, snackBarService, appComponent, formBuilder, activedRoute, router, dialog, snackBar, viewContainerRef) {
         this.labelService = labelService;
         this.itemService = itemService;
         this.dialogService = dialogService;
+        this.snackBarService = snackBarService;
         this.appComponent = appComponent;
         this.formBuilder = formBuilder;
         this.activedRoute = activedRoute;
@@ -62,7 +65,7 @@ var LabelComponent = (function () {
             .then(function (labels) {
             _this.labels = labels.json();
             if (_this.labels.length > 0) {
-                _this.snackBar.open("ERROR: This label own item. Therefore you can not delete it !", "close");
+                _this.snackBarService.DisplayNotification(MessageTypes_1.MessageTypes.ERROR, "\"" + label.Name + "\" own item. Therefore you can not delete it !", 5000);
             }
             else {
                 _this.labelService
@@ -71,7 +74,7 @@ var LabelComponent = (function () {
                     _this.appComponent.getAllLabel();
                     _this.router.navigateByUrl('/');
                 });
-                _this.successAttempt("\"" + label.Name + "\" have deleted successfully.");
+                _this.snackBarService.DisplayNotification(MessageTypes_1.MessageTypes.SUCCESS, "\"" + label.Name + "\" have deleted sucessfully !", 5000);
             }
         });
     };
@@ -129,11 +132,6 @@ var LabelComponent = (function () {
             }
         });
     };
-    LabelComponent.prototype.successAttempt = function (messageContent) {
-        var config = new material_1.MdSnackBarConfig();
-        config.duration = 5000;
-        this.snackBar.open(messageContent, "close", config);
-    };
     LabelComponent.prototype.ngOnInit = function () {
         this.InitialLabel();
         this.InitialItem();
@@ -158,6 +156,7 @@ LabelComponent = __decorate([
     __metadata("design:paramtypes", [label_service_1.LabelService,
         item_service_1.ItemService,
         dialog_service_1.DialogService,
+        snackBar_Service_1.SnackBarService,
         app_component_1.AppComponent,
         forms_1.FormBuilder,
         router_1.ActivatedRoute,
