@@ -29,6 +29,7 @@ var dialog_service_1 = require("./shared/dialog/dialog.service");
 var material_1 = require("@angular/material");
 var confirm_dialog_1 = require("./shared/dialog/confirm-dialog");
 var itemDetail_dialog_component_1 = require("./item/itemDetail-dialog.component");
+var snackBar_Service_1 = require("./shared/notification/snackBar.Service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -57,7 +58,8 @@ AppModule = __decorate([
             validation_service_1.ValidationService,
             item_service_1.ItemService,
             label_service_1.LabelService,
-            dialog_service_1.DialogService
+            dialog_service_1.DialogService,
+            snackBar_Service_1.SnackBarService
         ],
         entryComponents: [
             confirm_dialog_1.ConfirmDialog,

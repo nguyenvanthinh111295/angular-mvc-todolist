@@ -22,6 +22,7 @@ import { DialogService } from './shared/dialog/dialog.service';
 import { MaterialModule } from '@angular/material';
 import { ConfirmDialog } from './shared/dialog/confirm-dialog';
 import { ItemDetailDialog } from './item/itemDetail-dialog.component';
+import { SnackBarService } from './shared/notification/snackBar.Service';
 
 @NgModule({
     imports: [
@@ -45,7 +46,8 @@ import { ItemDetailDialog } from './item/itemDetail-dialog.component';
         ValidationService,
         ItemService,
         LabelService,
-        DialogService
+        DialogService,
+        SnackBarService
     ],
     entryComponents: [
         ConfirmDialog,
