@@ -3,4 +3,5 @@ export class Item{
     Name: string;
     Content: string;
     LabelId: number;
+    SoftDelete: boolean;
 }
