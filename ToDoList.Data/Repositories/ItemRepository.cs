@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,13 +36,19 @@ namespace ToDoList.Data.Repositories
 
         public IEnumerable<Item> GetLabelItemsByLabelId(int labelId)
         {
-            var items = _db.Items.Where(i => i.LabelId == labelId);
+            var items = _db.Items.Where(i => i.LabelId == labelId && i.SoftDelete == false);
             return items;
         }
 
         public void InsertItem(Item item)
         {
             _db.Items.Add(item);
+            _db.SaveChanges();
+        }
+
+        public void Update(Item item)
+        {
+            _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
         }
     }

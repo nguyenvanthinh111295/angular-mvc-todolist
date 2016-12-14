@@ -13,5 +13,6 @@ namespace ToDoList.Data.Repositories
         Item GetItemById(int id);
         void InsertItem(Item item);
         void DeleteItem(Item item);
+        void Update (Item item);
     }
 }
