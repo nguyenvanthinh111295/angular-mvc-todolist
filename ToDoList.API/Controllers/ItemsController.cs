@@ -23,12 +23,12 @@ namespace ToDoList.API.Controllers
         {
             this._itemRepository = new ItemRepository();
         }
-        
+
         public IEnumerable<Item> Get()
         {
             return _itemRepository.GetAll();
         }
-        
+
         [Route("api/Items/DeleteItem/{id:int}")]
         [ResponseType(typeof(Item))]
         public IHttpActionResult DeleteItem(int id)
@@ -76,6 +76,20 @@ namespace ToDoList.API.Controllers
             }
 
             return Ok(item);
+        }
+
+        [Route("api/Items/SoftDeleteItem/")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult SoftDeleteItem(Item item)
+        {
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            _itemRepository.Update(item);
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }
