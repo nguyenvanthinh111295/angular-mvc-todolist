@@ -11,6 +11,6 @@ export class SnackBarService {
     {
         let config = new MdSnackBarConfig();
         config.duration = milliseconds;
-        this.snackBar.open(messageTypes + " : " + message, "close", config);
+        this.snackBar.open(messageTypes + " " + message, "close", config);
     }
 }

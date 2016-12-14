@@ -17,7 +17,7 @@ var SnackBarService = (function () {
     SnackBarService.prototype.DisplayNotification = function (messageTypes, message, milliseconds) {
         var config = new material_1.MdSnackBarConfig();
         config.duration = milliseconds;
-        this.snackBar.open(messageTypes + " : " + message, "close", config);
+        this.snackBar.open(messageTypes + " " + message, "close", config);
     };
     return SnackBarService;
 }());
