@@ -50,6 +50,13 @@ var ItemService = (function () {
         return this.http
             .get(this.itemsUrl + 'GetItemDetail' + "/" + item.Id);
     };
+    ItemService.prototype.softDeleteItem = function (item) {
+        return this.http
+            .post("" + (this.itemsUrl + "SoftDeleteItem"), JSON.stringify(item), { headers: this.headers })
+            .toPromise()
+            .then(function () { return item; })
+            .catch(this.handleError);
+    };
     ItemService.prototype.handleError = function (error) {
         console.error('An error occured', error);
         return Promise.reject(error.message || error);

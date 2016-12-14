@@ -51,7 +51,17 @@ export class ItemService {
 
     getItemById(item: Item): any{
         return this.http
-        .get(`${this.itemsUrl + 'GetItemDetail'}/${item.Id}`)
+            .get(`${this.itemsUrl + 'GetItemDetail'}/${item.Id}`)
+    }
+
+    softDeleteItem(item: Item): Promise<Item>{
+        return this.http
+            .post(`${this.itemsUrl + "SoftDeleteItem"}`,
+            JSON.stringify(item),
+            {headers: this.headers})
+            .toPromise()
+            .then(() => item)
+            .catch(this.handleError);
     }
 
     private handleError(error: any) {
