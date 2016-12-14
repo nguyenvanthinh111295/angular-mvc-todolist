@@ -65,7 +65,7 @@ var LabelComponent = (function () {
             .then(function (labels) {
             _this.labels = labels.json();
             if (_this.labels.length > 0) {
-                _this.snackBarService.DisplayNotification(MessageTypes_1.MessageTypes.ERROR, "\"" + label.Name + "\" own item. Therefore you can not delete it !", 5000);
+                _this.snackBarService.DisplayNotification(MessageTypes_1.MessageTypes.ERROR, "\"" + label.Name + "\" already exists items. Therefore you can not delete it !", 5000);
             }
             else {
                 _this.labelService
@@ -109,6 +109,15 @@ var LabelComponent = (function () {
                 _this.getLabelItems(item);
             });
         }
+    };
+    LabelComponent.prototype.softDeleteItem = function (item) {
+        var _this = this;
+        item.SoftDelete = true;
+        this.itemService
+            .softDeleteItem(item)
+            .then(function (items) {
+            _this.getLabelItems(item);
+        });
     };
     LabelComponent.prototype.openItemDetail = function (item) {
         var dialogRef;

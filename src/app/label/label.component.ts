@@ -73,7 +73,7 @@ export class LabelComponent implements OnInit {
             .then(labels => {
                 this.labels = labels.json();
                 if (this.labels.length > 0) {
-                    this.snackBarService.DisplayNotification(MessageTypes.ERROR, `"${label.Name}" own item. Therefore you can not delete it !`, 5000);
+                    this.snackBarService.DisplayNotification(MessageTypes.ERROR, `"${label.Name}" already exists items. Therefore you can not delete it !`, 5000);
                 }
                 else {
                     this.labelService
@@ -119,8 +119,17 @@ export class LabelComponent implements OnInit {
         }
     }
 
+    softDeleteItem(item: Item){
+        item.SoftDelete = true;
+        this.itemService
+            .softDeleteItem(item)
+            .then(items => {
+                this.getLabelItems(item);
+            });
+    }
+
     openItemDetail(item: Item) {
-        
+
         let dialogRef: MdDialogRef<ItemDetailDialog>;
 
         dialogRef = this.dialog.open(ItemDetailDialog, {
@@ -146,7 +155,7 @@ export class LabelComponent implements OnInit {
                 }
             });
     }
-    
+
     ngOnInit() {
         this.InitialLabel();
         this.InitialItem();
