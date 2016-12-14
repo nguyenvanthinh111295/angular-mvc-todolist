@@ -18,5 +18,6 @@ namespace ToDoList.Data
         public string Name { get; set; }
         public string Content { get; set; }
         public int LabelId { get; set; }
+        public bool SoftDelete { get; set; }
     }
 }
