@@ -78,9 +78,9 @@ namespace ToDoList.API.Controllers
             return Ok(item);
         }
 
-        [Route("api/Items/SoftDeleteItem/")]
+        [Route("api/Items/UpdateItem/")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult SoftDeleteItem(Item item)
+        public IHttpActionResult UpdateItem(Item item)
         {
             if (item == null)
             {
@@ -91,5 +91,7 @@ namespace ToDoList.API.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+        
     }
 }
