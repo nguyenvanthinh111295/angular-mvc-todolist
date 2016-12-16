@@ -4,4 +4,5 @@ export class Item{
     Content: string;
     LabelId: number;
     SoftDelete: boolean;
+    Color: string;
 }
