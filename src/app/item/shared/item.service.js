@@ -50,9 +50,9 @@ var ItemService = (function () {
         return this.http
             .get(this.itemsUrl + 'GetItemDetail' + "/" + item.Id);
     };
-    ItemService.prototype.softDeleteItem = function (item) {
+    ItemService.prototype.updateItem = function (item) {
         return this.http
-            .post("" + (this.itemsUrl + "SoftDeleteItem"), JSON.stringify(item), { headers: this.headers })
+            .post("" + (this.itemsUrl + "UpdateItem"), JSON.stringify(item), { headers: this.headers })
             .toPromise()
             .then(function () { return item; })
             .catch(this.handleError);

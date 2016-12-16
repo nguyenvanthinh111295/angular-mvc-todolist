@@ -54,9 +54,9 @@ export class ItemService {
             .get(`${this.itemsUrl + 'GetItemDetail'}/${item.Id}`)
     }
 
-    softDeleteItem(item: Item): Promise<Item>{
+    updateItem(item: Item): Promise<Item>{
         return this.http
-            .post(`${this.itemsUrl + "SoftDeleteItem"}`,
+            .post(`${this.itemsUrl + "UpdateItem"}`,
             JSON.stringify(item),
             {headers: this.headers})
             .toPromise()
