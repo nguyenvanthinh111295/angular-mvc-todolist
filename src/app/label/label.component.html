@@ -3,31 +3,36 @@
 		<md-toolbar color="primary">
 			<span>{{label.Name}}</span>
 			<span class="fill-remaining-space"></span>
-			<span><md-icon style="color:#ffffff" (click)="confirmDialog()">delete</md-icon></span>
-		</md-toolbar>
-		<md-card>
-			<md-card-content>
-				<md-input [(ngModel)]="item.Name" formControlName="itemName" class="full-width" placeholder="Title" align="start"></md-input>
-				<control-messages [control]="labelForm.controls.itemName"></control-messages>
-				<textarea [(ngModel)]="item.Content" formControlName="itemContent" class="full-width" placeholder="Write a note"></textarea>
-			</md-card-content>
-			<md-card-actions layout="row" style="text-align:right">
-				<button md-button (click)="save(item)" [disabled]="!labelForm.valid" style="font-weight:bold; color:#757575">
-                    Finish
-                </button>
-			</md-card-actions>
-		</md-card>
-	</form>
+			<span><md-icon style="color:#ffffff" (click)="confirmDialog()">delete</md-icon>
+</span>
+</md-toolbar>
+<md-card>
+	<md-card-content>
+		<md-input [(ngModel)]="item.Name" formControlName="itemName" class="full-width" placeholder="Title" align="start"></md-input>
+		<control-messages [control]="labelForm.controls.itemName"></control-messages>
+		<textarea [(ngModel)]="item.Content" formControlName="itemContent" class="full-width" placeholder="Write a note"></textarea>
+	</md-card-content>
+	<md-card-actions layout="row" style="text-align:right">
+<button md-button (click)="save(item)" [disabled]="!labelForm.valid" style="font-weight:bold; color:#757575"> Finish
+</button>
+</md-card-actions>
+</md-card>
+</form>
 </div>
+
 <div class="item-list">
-	<md-card *ngFor="let item of items">
+	<md-card *ngFor="let item of items" [style.background-color]="'rgb('+ item.Color +')'">
 		<md-card-title>{{item.Name}}</md-card-title>
 		<md-card-content>
 			<div (click)="openItemDetail(item)">{{item.Content}}</div>
 		</md-card-content>
 		<md-card-actions>
 			<md-icon (click)="softDeleteItem(item)">delete</md-icon>
-			<md-icon>brush</md-icon>
+			<md-icon [md-menu-trigger-for]="itemColorMenu">brush</md-icon>
+			<md-menu x-position="after" y-position="above" #itemColorMenu="mdMenu">
+				<button *ngFor="let color of colour" md-menu-item style.background-color="rgb({{color.RGBCode}})" (click)="getRGBCode(color, item)"> {{color.Name}} 
+			</button>
+			</md-menu>
 		</md-card-actions>
 	</md-card>
 </div>
