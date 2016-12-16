@@ -6,6 +6,7 @@ import { MdDialog, MdDialogRef, MdSnackBar, MdSnackBarConfig } from '@angular/ma
 import { Label } from './shared/label';
 import { LabelService } from './shared/label.service';
 import { Item } from './../item/shared/item';
+import { ItemColor } from './../item/ItemColor';
 import { ItemService } from './../item/shared/item.service';
 import { AppComponent } from './../app.component';
 import { ItemsComponent } from './../item/items.component';
@@ -23,6 +24,7 @@ export class LabelComponent implements OnInit {
 
     public labels: any[];
     private items: any[];
+    private colour: any[];
     @Input() label: Label;
     @Input() item: Item;
     selectedLabel: Label;
@@ -53,6 +55,15 @@ export class LabelComponent implements OnInit {
 
     private InitialItem() {
         this.item = new Item();
+    }
+
+    private InitialItemColour(){
+        this.colour = [
+            new ItemColor("White","255, 255, 255"),
+            new ItemColor("Red", "255, 138, 128"),
+            new ItemColor("Orange", "255, 209, 128"),
+            new ItemColor("Yellow", "255, 255, 141"),
+        ]
     }
 
     private labelDetail() {
@@ -119,10 +130,19 @@ export class LabelComponent implements OnInit {
         }
     }
 
+    getRGBCode(color: ItemColor, item: Item){
+        item.Color = color.RGBCode;
+        this.itemService
+            .updateItem(item)
+            .then(items => {
+                this.getLabelItems(item);
+            });    
+    }
+
     softDeleteItem(item: Item){
         item.SoftDelete = true;
         this.itemService
-            .softDeleteItem(item)
+            .updateItem(item)
             .then(items => {
                 this.getLabelItems(item);
             });
@@ -161,5 +181,6 @@ export class LabelComponent implements OnInit {
         this.InitialItem();
         this.labelDetail();
         this.getLabelItems(this.item);
+        this.InitialItemColour();
     }
 }

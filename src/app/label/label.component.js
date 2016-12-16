@@ -15,6 +15,7 @@ var material_1 = require("@angular/material");
 var label_1 = require("./shared/label");
 var label_service_1 = require("./shared/label.service");
 var item_1 = require("./../item/shared/item");
+var ItemColor_1 = require("./../item/ItemColor");
 var item_service_1 = require("./../item/shared/item.service");
 var app_component_1 = require("./../app.component");
 var dialog_service_1 = require("./../shared/dialog/dialog.service");
@@ -45,6 +46,14 @@ var LabelComponent = (function () {
     };
     LabelComponent.prototype.InitialItem = function () {
         this.item = new item_1.Item();
+    };
+    LabelComponent.prototype.InitialItemColour = function () {
+        this.colour = [
+            new ItemColor_1.ItemColor("White", "255, 255, 255"),
+            new ItemColor_1.ItemColor("Red", "255, 138, 128"),
+            new ItemColor_1.ItemColor("Orange", "255, 209, 128"),
+            new ItemColor_1.ItemColor("Yellow", "255, 255, 141"),
+        ];
     };
     LabelComponent.prototype.labelDetail = function () {
         var _this = this;
@@ -110,11 +119,20 @@ var LabelComponent = (function () {
             });
         }
     };
+    LabelComponent.prototype.getRGBCode = function (color, item) {
+        var _this = this;
+        item.Color = color.RGBCode;
+        this.itemService
+            .updateItem(item)
+            .then(function (items) {
+            _this.getLabelItems(item);
+        });
+    };
     LabelComponent.prototype.softDeleteItem = function (item) {
         var _this = this;
         item.SoftDelete = true;
         this.itemService
-            .softDeleteItem(item)
+            .updateItem(item)
             .then(function (items) {
             _this.getLabelItems(item);
         });
@@ -146,6 +164,7 @@ var LabelComponent = (function () {
         this.InitialItem();
         this.labelDetail();
         this.getLabelItems(this.item);
+        this.InitialItemColour();
     };
     return LabelComponent;
 }());
